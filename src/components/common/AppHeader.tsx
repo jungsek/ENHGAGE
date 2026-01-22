@@ -10,6 +10,7 @@ interface AppHeaderProps {
     };
     onStreakClick?: () => void;
     onProfileClick?: () => void;
+    onPointsClick?: () => void;
 }
 
 export const AppHeader = ({
@@ -17,6 +18,7 @@ export const AppHeader = ({
     streak,
     onStreakClick,
     onProfileClick,
+    onPointsClick,
 }: AppHeaderProps) => {
     return (
         <div className="sticky top-0 z-20 bg-white/95 backdrop-blur border-b-2 border-gray-100 px-4 py-2 flex items-center justify-between font-din">
@@ -24,7 +26,10 @@ export const AppHeader = ({
                 <EnhgageLogo size="small" showIcon={false} />
             </div>
             <div className="flex items-center gap-4">
-                <div className="flex items-center gap-1">
+                <button
+                    className="flex items-center gap-1 active:scale-95 transition-transform"
+                    onClick={onPointsClick}
+                >
                     <img
                         src={IMAGES.icons.trophy}
                         alt="gems"
@@ -33,7 +38,7 @@ export const AppHeader = ({
                     <span className="font-extrabold text-[#00897B]">
                         {gems}
                     </span>
-                </div>
+                </button>
                 <button
                     className="flex items-center gap-1 active:scale-95 transition-transform"
                     onClick={onStreakClick}
@@ -42,10 +47,10 @@ export const AppHeader = ({
                         src={IMAGES.icons.flame}
                         alt="streak"
                         className={`w-6 h-6 ${streak.status === "hot"
-                                ? "animate-pulse"
-                                : streak.status === "cold"
-                                    ? "opacity-50 grayscale"
-                                    : ""
+                            ? "animate-pulse"
+                            : streak.status === "cold"
+                                ? "opacity-50 grayscale"
+                                : ""
                             }`}
                     />
                     <span

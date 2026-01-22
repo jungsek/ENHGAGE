@@ -1,7 +1,9 @@
 import React from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { Flame, Snowflake, X, Check } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 import { cn } from '@/components/ui/utils';
+import { IMAGES } from '@/constants/assets';
 
 // Reuse FontStyles if needed, but since it's imported in App, we might not need it here if this was a separate file. 
 // However, since we are adding this to App.tsx via edit/write, I'll just create the component code block to be inserted.
@@ -19,15 +21,8 @@ export const StreakModal = ({
 
     const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 
-    // Determine flame visual based on status
-    const getFlameColor = () => {
-        if (streak.status === 'hot') return "text-orange-600 fill-orange-600 drop-shadow-[0_0_15px_rgba(234,88,12,0.6)]";
-        if (streak.status === 'warm') return "text-orange-500 fill-orange-500";
-        return "text-gray-400 fill-gray-300";
-    };
-
-    return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" onClick={onClose}>
+    return createPortal(
+        <div className="fixed inset-0 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" style={{ zIndex: 9999 }} onClick={onClose}>
             <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
@@ -48,8 +43,15 @@ export const StreakModal = ({
 
                 {/* Big Flame */}
                 <div className="flex flex-col items-center mb-8 relative">
-                    <div className="relative">
-                        <Flame size={140} className={cn("transition-all duration-500", getFlameColor())} />
+                    <div className="relative flex items-center justify-center">
+                        <img
+                            src={IMAGES.icons.flameLarge}
+                            alt="Streak Flame"
+                            className={cn(
+                                "w-36 h-36 object-contain transition-all duration-500",
+                                streak.status === 'cold' && "grayscale opacity-50"
+                            )}
+                        />
                         <div className="absolute inset-0 flex items-center justify-center pt-8">
                             <span className="text-4xl font-feather text-white drop-shadow-md">{streak.current}</span>
                         </div>
@@ -84,7 +86,7 @@ export const StreakModal = ({
                 <div className="flex items-center justify-between bg-cyan-50 border-2 border-cyan-100 rounded-2xl p-4">
                     <div className="flex items-center gap-3">
                         <div className="w-10 h-10 bg-cyan-500 rounded-xl flex items-center justify-center text-white shadow-sm transform rotate-3">
-                            <Snowflake size={20} strokeWidth={3} />
+                            <img src={IMAGES.icons.checkFreeze} alt="Freeze" className="w-6 h-6 object-contain" />
                         </div>
                         <div className="flex flex-col text-left">
                             <span className="font-extrabold text-cyan-700 text-sm">Streak Freeze</span>
@@ -105,6 +107,7 @@ export const StreakModal = ({
                     </button>
                 </div>
             </motion.div>
-        </div>
+        </div>,
+        document.body
     );
 };

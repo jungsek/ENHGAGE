@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { Check, Zap, Heart, Star } from "lucide-react";
 import confetti from "canvas-confetti";
@@ -12,6 +13,7 @@ import { useAppStore } from "@/store/useAppStore";
 
 export const HomeScreen = () => {
     const { profile } = useAppStore();
+    const navigate = useNavigate();
     const [showStreakModal, setShowStreakModal] = useState(false);
 
     useEffect(() => {
@@ -36,9 +38,10 @@ export const HomeScreen = () => {
 
             {/* Top Bar */}
             <AppHeader
-                gems={520}
+                gems={profile.points}
                 streak={profile.streak}
                 onStreakClick={() => setShowStreakModal(true)}
+                onPointsClick={() => navigate("/app/rewards")}
             />
 
             <div className="flex-1 overflow-y-auto">
@@ -140,10 +143,8 @@ export const HomeScreen = () => {
                                 </div>
 
                                 {/* Node 4 (Goal) */}
-                                <div className="relative z-10">
-                                    <div className="w-12 h-12 rounded-2xl bg-gray-100 border-2 border-gray-200 border-b-4 flex items-center justify-center">
-                                        <img src={IMAGES.icons.chestGold} alt="goal" className="w-6 h-6 opacity-50 grayscale" />
-                                    </div>
+                                <div className="w-12 h-12 rounded-2xl bg-gray-100 border-2 border-gray-200 border-b-4 flex items-center justify-center">
+                                    <img src={IMAGES.icons.chest} alt="goal" className="w-6 h-6 opacity-50 grayscale" />
                                 </div>
                             </div>
                         </div>

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { AnimatePresence } from "motion/react";
 import { AppHeader } from "@/components/common/AppHeader";
 import { LeaderboardHeader } from "@/components/social/LeaderboardHeader";
@@ -10,14 +11,16 @@ import { useAppStore } from "@/store/useAppStore";
 
 export const SocialScreen = () => {
     const { profile } = useAppStore();
+    const navigate = useNavigate();
     const [showWrappedModal, setShowWrappedModal] = useState(false);
 
     return (
         <div className="min-h-screen bg-gray-50 max-w-md mx-auto flex flex-col pb-20 overflow-x-hidden" style={{ overflowX: 'hidden' }}>
             {/* Top Bar */}
             <AppHeader
-                gems={520}
+                gems={profile.points}
                 streak={profile.streak}
+                onPointsClick={() => navigate("/app/rewards")}
             />
 
             {/* Main Content */}

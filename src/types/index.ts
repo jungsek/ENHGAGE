@@ -19,6 +19,7 @@ export type UserProfile = {
     buddy: "olah" | "lylah" | "ellah" | null;
     buddyName: string;
     referralSource: string;
+    points: number;
     streak: {
         current: number;
         status: "cold" | "warm" | "hot";
@@ -68,4 +69,5 @@ export interface WrappedData {
     highFivesGiven: number;
     highFivesReceived: number;
     schoolContribution: number;
+    learningMinutes: number;
 }

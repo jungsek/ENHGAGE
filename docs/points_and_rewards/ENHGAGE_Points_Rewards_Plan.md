@@ -441,4 +441,40 @@ The ENHGAGE Points & Rewards system is designed to:
 4. **Leverage FREE NHG programmes** as value-added rewards
 5. **Scale sustainably** with balanced points economy
 
-**Key Recommendation:** Launch with HPB eVoucher integration as the primary reward mechanism, as it provides immediate access to popular merchants (FairPrice, Watsons, Golden Village) through an established government partnership that aligns with ENHGAGE's health mission.
+445: **Key Recommendation:** Launch with HPB eVoucher integration as the primary reward mechanism, as it provides immediate access to popular merchants (FairPrice, Watsons, Golden Village) through an established government partnership that aligns with ENHGAGE's health mission.
+446: 
+447: ---
+448: 
+449: ## Part 8: Technical Implementation Plan
+450: 
+451: ### 8.1 Component Structure
+452: 
+453: #### [AppHeader.tsx](file:///Users/jungsek/Desktop/ENHGAGE_APP/ENHGAGE/src/components/common/AppHeader.tsx)
+454: - Add `onPointsClick` prop to the `AppHeader` interface.
+455: - Implement a click handler on the points display section (Gem icon + count).
+456: - Ensure visually distinct hover state to indicate interactivity.
+457: 
+458: #### [RewardsScreen.tsx](file:///Users/jungsek/Desktop/ENHGAGE_APP/ENHGAGE/src/screens/RewardsScreen.tsx)
+459: - **State Management**: Connect to `useAppStore` to get current points (`profile.points`).
+460: - **Tabs**: Implement tabs for "Rewards Shop", "Points Breakdown", and "History".
+461: - **Points Header**: Replicate the header design from the plan (Total Points + Tier Status).
+462: - **Rewards List**:
+463:     - Create a `RewardCard` component.
+464:     - Display rewards categorized by type (Vouchers, Activities, etc.).
+465:     - Implement "Redeem" button logic (for now, show success modal and deduct points).
+466: 
+467: ### 8.2 Routing & Navigation
+468: 
+469: #### [MainLayout.tsx](file:///Users/jungsek/Desktop/ENHGAGE_APP/ENHGAGE/src/layouts/MainLayout.tsx)
+470: - In `MainLayout`, define the `handlePointsClick` function which uses `useNavigate` to go to `/app/rewards`.
+471: - Pass `onPointsClick={handlePointsClick}` to `<AppHeader />`.
+472: 
+473: ### 8.3 Data Logic
+474: 
+475: #### [useAppStore.ts](file:///Users/jungsek/Desktop/ENHGAGE_APP/ENHGAGE/src/store/useAppStore.ts)
+476: - Verify `addPoints` is working.
+477: - Add `redeemReward` action:
+478:     - Check if user has enough points.
+479:     - Deduct points.
+480:     - Add a record to a new `redemptionHistory` array in the profile (if needed for history).
+

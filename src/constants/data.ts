@@ -1,39 +1,97 @@
+import { LessonPillar } from "@/types/LessonTypes";
+
+// Centralized Pillar Configuration - Single source of truth for all pillar data
+export const PILLAR_CONFIG: Record<LessonPillar, {
+    id: LessonPillar;
+    title: string;
+    icon: string;
+    color: string;
+}> = {
+    stress_mental: {
+        id: "stress_mental",
+        title: "Stress & Mental Wellness",
+        icon: "brain",
+        color: "#CE82FF",
+    },
+    nutrition: {
+        id: "nutrition",
+        title: "Nutrition & Healthy Eating",
+        icon: "heart",
+        color: "#58CC02",
+    },
+    fitness: {
+        id: "fitness",
+        title: "Fitness & Physical Activity",
+        icon: "dumbbell",
+        color: "#FF6B6B",
+    },
+    chronic_disease: {
+        id: "chronic_disease",
+        title: "Chronic Disease Prevention",
+        icon: "bullseye",
+        color: "#FFC800",
+    },
+    caregiver: {
+        id: "caregiver",
+        title: "Caregiver Skills",
+        icon: "heart",
+        color: "#1CB0F6",
+    },
+    community: {
+        id: "community",
+        title: "Community Leadership",
+        icon: "social",
+        color: "#00897B",
+    },
+};
+
+// Ordered array of all pillar IDs for iteration
+export const ALL_PILLARS: LessonPillar[] = [
+    "stress_mental",
+    "nutrition",
+    "fitness",
+    "chronic_disease",
+    "caregiver",
+    "community",
+];
+
+// Interests data for onboarding - uses pillar IDs for consistency
 export const INTERESTS_DATA = [
     {
-        id: "mental",
-        icon: "🧘",
+        id: "stress_mental",
+        icon: "brain",
         title: "Stress & Mental Wellness",
-        color: "text-purple-500",
+        color: "#CE82FF",
     },
     {
         id: "nutrition",
-        icon: "🥗",
+        icon: "heart",
         title: "Nutrition & Healthy Eating",
-        color: "text-green-500",
+        color: "#58CC02",
     },
     {
         id: "fitness",
-        icon: "🏃",
-        title: "Physical Activity",
-        color: "text-orange-500",
+        icon: "dumbbell",
+        title: "Fitness & Physical Activity",
+        color: "#FF6B6B",
     },
     {
-        id: "sleep",
-        icon: "😴",
-        title: "Sleep & Rest",
-        color: "text-indigo-500",
-    },
-    {
-        id: "chronic",
-        icon: "💪",
+        id: "chronic_disease",
+        icon: "bullseye",
         title: "Chronic Disease Prevention",
-        color: "text-red-500",
+        color: "#FFC800",
     },
     {
-        id: "caring",
-        icon: "👨‍👩‍👧",
-        title: "Caring for Others",
-        color: "text-pink-500",
+        id: "caregiver",
+        icon: "heart",
+        title: "Caregiver Skills",
+        color: "#1CB0F6",
+    },
+    {
+        id: "community",
+        icon: "social",
+        title: "Community Leadership",
+        color: "#00897B",
     },
 ];
 

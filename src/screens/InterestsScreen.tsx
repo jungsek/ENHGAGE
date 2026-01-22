@@ -1,10 +1,22 @@
-import React from "react";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { ProgressBar } from "@/components/common/ProgressBar";
 import { Card } from "@/components/common/Card";
 import { INTERESTS_DATA } from "@/constants/data";
 import { useAppStore } from "@/store/useAppStore";
+import { IMAGES } from "@/constants/assets";
+
+// Map icon names to actual SVG imports
+const getIconSrc = (iconName: string) => {
+    const iconMap: Record<string, string> = {
+        brain: IMAGES.icons.analytics,
+        heart: IMAGES.icons.heart,
+        dumbbell: IMAGES.icons.dumbbell,
+        bullseye: IMAGES.icons.checkCircle,
+        social: IMAGES.icons.social,
+    };
+    return iconMap[iconName] || IMAGES.icons.heart;
+};
 
 export const InterestsScreen = () => {
     const { profile, toggleInterest, setStep } = useAppStore();
@@ -38,7 +50,17 @@ export const InterestsScreen = () => {
                                 onClick={() => toggleInterest(item.id)}
                                 className="flex flex-col items-center justify-center text-center h-32"
                             >
-                                <span className="text-3xl mb-2">{item.icon}</span>
+                                <div 
+                                    className="w-10 h-10 mb-2 rounded-lg flex items-center justify-center"
+                                    style={{ backgroundColor: `${item.color}20` }}
+                                >
+                                    <img 
+                                        src={getIconSrc(item.icon)} 
+                                        alt={item.title}
+                                        className="w-6 h-6"
+                                        style={{ filter: isSelected ? 'none' : 'grayscale(50%)' }}
+                                    />
+                                </div>
                                 <span
                                     className={`text-sm font-extrabold leading-tight ${isSelected ? "text-[#00897B]" : "text-gray-600"
                                         }`}

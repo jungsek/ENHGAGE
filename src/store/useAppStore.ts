@@ -14,6 +14,8 @@ interface AppState {
     toggleInterest: (interest: string) => void;
     completeOnboarding: () => void;
     resetProfile: () => void;
+    // Points Actions
+    addPoints: (amount: number) => void;
     // Leaderboard Actions
     setLeaderboardCategory: (category: LeaderboardCategory) => void;
     setTimeFilter: (filter: TimeFilter) => void;
@@ -32,6 +34,7 @@ export const useAppStore = create<AppState>()(
                 buddy: null,
                 buddyName: "",
                 referralSource: "",
+                points: 0,
                 streak: {
                     current: 7,
                     status: "warm",
@@ -68,6 +71,14 @@ export const useAppStore = create<AppState>()(
                     }
                 }),
             completeOnboarding: () => set({ hasCompletedOnboarding: true, step: "home" }),
+            // Add points to user profile
+            addPoints: (amount) =>
+                set((state) => ({
+                    profile: {
+                        ...state.profile,
+                        points: state.profile.points + amount,
+                    },
+                })),
             resetProfile: () =>
                 set({
                     step: "splash",
@@ -80,6 +91,7 @@ export const useAppStore = create<AppState>()(
                         buddy: null,
                         buddyName: "",
                         referralSource: "",
+                        points: 0,
                         streak: {
                             current: 7,
                             status: "warm",

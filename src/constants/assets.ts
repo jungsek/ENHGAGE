@@ -9,6 +9,17 @@ import enhgageIcon from "@/assets/brand/enhgage_icon.png";
 import nhgLogo from "@/assets/brand/nhg_logo.png";
 import taglineImg from "@/assets/brand/tagline.png";
 
+// Stat Badge Images
+import statXpBadge from "@/assets/stats/stat-xp.png";
+import statGoodBadge from "@/assets/stats/stat-good.png";
+import statSpeedyBadge from "@/assets/stats/stat-speedy.png";
+
+// Quest Images
+import questTasksIcon from "@/assets/quests/task1.png";
+import questTask2Icon from "@/assets/quests/task2.png";
+import questTask3Icon from "@/assets/quests/task3.png";
+import questSpecialTaskIcon from "@/assets/quests/Special Task.png";
+
 // Import Icons
 import trophyIcon from "@/assets/icons/diamond.svg"; // Placeholder
 import dumbbellIcon from "@/assets/icons/dumbbell.svg";
@@ -23,7 +34,7 @@ import shieldGoldIcon from "@/assets/icons/gold-shield.svg";
 import heartIcon from "@/assets/icons/heart.svg";
 import heartPurpleIcon from "@/assets/icons/heart.svg"; // Placeholder
 import chestPurpleIcon from "@/assets/icons/chest.svg"; // Placeholder
-import chestGoldIcon from "@/assets/icons/chest.svg"; // Placeholder
+import chestIcon from "@/assets/icons/chest.svg"; // Placeholder
 import closeIcon from "@/assets/icons/blue-dot.svg"; // Placeholder
 import lockIcon from "@/assets/icons/lock.svg";
 import coinIcon from "@/assets/icons/diamond.svg"; // Placeholder
@@ -60,6 +71,11 @@ import medalNinthIcon from "@/assets/icons/medal-ninth.svg";
 import medalTenthIcon from "@/assets/icons/medal-tenth.svg";
 import medalEleventhIcon from "@/assets/icons/medal-eleventh.svg";
 
+// Background Images
+import streaksBackground from "@/assets/backgrounds/streaks.png";
+import activityBackground from "@/assets/backgrounds/activity.png";
+import communityBackground from "@/assets/backgrounds/community_bg.png";
+
 // School Icons
 import iteLogo from "@/assets/schools/ite.png";
 import nypLogo from "@/assets/schools/nanyang-poly.png";
@@ -86,6 +102,13 @@ export const IMAGES = {
     ellahFull: ellahFull,
     confetti: "https://images.unsplash.com/photo-1698285439446-2ad560e31a17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjZWxlYnJhdGlvbiUyMGNvbmZldHRpJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3Njg0OTg4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
 
+    // Stat Badges for Lesson Complete Screen
+    stats: {
+        xp: statXpBadge,
+        good: statGoodBadge,
+        speedy: statSpeedyBadge,
+    },
+
     // Icons
     icons: {
         trophy: trophyIcon,
@@ -102,7 +125,7 @@ export const IMAGES = {
         heart: heartIcon,
         heartPurple: heartPurpleIcon,
         chestPurple: chestPurpleIcon,
-        chestGold: chestGoldIcon,
+        chest: chestIcon,
         close: closeIcon,
         lock: lockIcon,
         coin: coinIcon,
@@ -150,6 +173,21 @@ export const IMAGES = {
         suss: sussLogo,
         sutd: sutdLogo,
         tp: tpLogo,
-    }
+    },
+
+    // Quest Images
+    quests: {
+        tasks: questTasksIcon,
+        task2: questTask2Icon,
+        task3: questTask3Icon,
+        specialTask: questSpecialTaskIcon,
+    },
+
+    // Background Images
+    backgrounds: {
+        streaks: streaksBackground,
+        activity: activityBackground,
+        community: communityBackground,
+    },
 };
 

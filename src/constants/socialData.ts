@@ -60,6 +60,7 @@ export const MOCK_WRAPPED_DATA: WrappedData = {
     highFivesGiven: 34,
     highFivesReceived: 28,
     schoolContribution: 0.67,
+    learningMinutes: 981,
 };
 
 // Competition Period Info

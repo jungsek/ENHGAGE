@@ -12,15 +12,35 @@ interface StreakWidgetProps {
 }
 
 export const StreakWidget = ({ history, streakCurrent, streakStatus }: StreakWidgetProps) => {
-    // Generate day labels ending with Today
+    // Generate day labels for current week (Monday to Sunday)
     const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Calculate Monday of the current week
+    // Day 0 is Sunday, 1 is Monday. We want 1 (Mon) to be start.
+    const currentDay = today.getDay(); // 0-6
+    const daysToSubtract = currentDay === 0 ? 6 : currentDay - 1;
+
+    const monday = new Date(today);
+    monday.setDate(today.getDate() - daysToSubtract);
+
     const days = Array.from({ length: 7 }, (_, i) => {
-        const d = new Date();
-        d.setDate(today.getDate() - (6 - i));
+        const d = new Date(monday);
+        d.setDate(monday.getDate() + i);
+
+        // Calculate offset from today to map to history array
+        // history is [Today-6, ..., Today] (length 7)
+        const diffTime = d.getTime() - today.getTime();
+        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+        const historyIndex = 6 + diffDays;
+
         return {
-            label: d.toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2).toUpperCase(), // MO, TU...
-            isToday: i === 6,
-            index: i
+            label: d.toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2).toUpperCase(),
+            date: d.getDate().toString(),
+            isToday: diffDays === 0,
+            isPreviousDay: diffDays < 0,
+            isFuture: diffDays > 0,
+            historyIndex
         };
     });
 
@@ -39,16 +59,31 @@ export const StreakWidget = ({ history, streakCurrent, streakStatus }: StreakWid
             </div>
 
             {/* Days Grid */}
-            <div className="flex justify-between items-center w-full px-2">
+            <div className="grid grid-cols-7 w-full" style={{ gridTemplateColumns: 'repeat(7, 1fr)' }}>
                 {days.map((day, idx) => {
-                    const isCompleted = history[idx];
-                    const isFrozen = DEMO_STREAK_CONFIG.forceFrozenState && DEMO_STREAK_CONFIG.frozenIndices.includes(idx);
+                    // Check if we have history for this day
+                    const hasHistory = day.historyIndex >= 0 && day.historyIndex < history.length;
+                    const isCompleted = hasHistory ? history[day.historyIndex] : false;
+                    const isFrozen = DEMO_STREAK_CONFIG.forceFrozenState &&
+                        hasHistory &&
+                        DEMO_STREAK_CONFIG.frozenIndices.includes(day.historyIndex);
 
                     return (
-                        <div key={idx} className="flex flex-col items-center gap-2">
+                        <div key={idx} className={cn(
+                            "flex flex-col items-center gap-1",
+                            day.isPreviousDay && "opacity-40 grayscale"
+                        )}>
+                            {/* Date Number */}
+                            <span className={cn(
+                                "text-[10px] font-bold font-din mb-0.5",
+                                day.isToday ? "text-orange-500" : "text-gray-400"
+                            )}>
+                                {day.date}
+                            </span>
+
                             {/* Day Label */}
                             <span className={cn(
-                                "text-xs font-bold font-din uppercase tracking-wide",
+                                "text-[10px] font-bold font-din uppercase tracking-wide mb-1",
                                 day.isToday ? "text-orange-500" : "text-gray-400"
                             )}>
                                 {day.label}
@@ -56,7 +91,7 @@ export const StreakWidget = ({ history, streakCurrent, streakStatus }: StreakWid
 
                             {/* Indicator Image */}
                             <motion.div
-                                className="relative cursor-pointer w-[45px] h-[45px] flex items-center justify-center p-0.5"
+                                className="relative cursor-pointer w-[38px] h-[38px] flex items-center justify-center p-0.5"
                                 initial={{ scale: 0.9, opacity: 0 }}
                                 animate={{ scale: 1, opacity: 1 }}
                                 transition={{ delay: idx * 0.05 }}

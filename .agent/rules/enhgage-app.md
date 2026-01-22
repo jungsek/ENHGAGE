@@ -1,11 +1,61 @@
----
-trigger: always_on
----
-
 # AGENTS.md - ENHGAGE APP AI Guide
 
 ## 🤖 Context for AI Agents
 This document serves as the **source of truth** for any AI agent working on the **Enhgage App**. Follow these guidelines strictly to maintain consistency, code quality, and the specific "premium gamified" aesthetic of the application.
+
+---
+
+## 📖 Brand Guidelines Reference (MANDATORY)
+
+**CRITICAL**: Before creating any new features, UI components, illustrations, or copy, **you MUST consult** the brand documentation located in:
+
+```
+docs/brand/
+```
+
+### Brand Documentation Index
+
+| Document | When to Reference |
+|----------|-------------------|
+| `ENHGAGE Brand Identity.md` | Logo usage, core colors (Deep Teal `#008080`, Light Teal `#66B2B2`), typography rules, icon guidelines, and brand family |
+| `ENHGAGE Illustration Guide.md` | Character design, shape language (rounded rectangles, circles, rounded triangles), illustration colors, mascot guidelines |
+| `ENHGAGE Writing Guide.md` | Voice & tone (Expressive, Playful, Embracing, Worldly), in-app copy, error messages, success messages, microcopy |
+| `ENHGAGE Marketing Guide.md` | Taglines, CTAs, promotional messaging, social media tone |
+| `ENHGAGE Resources.md` | Color specifications, approved emoji list, typography specs |
+
+### Mandatory Reference Checklist
+
+Before implementing, ask yourself:
+
+- [ ] **Creating UI copy or notifications?** → Read `ENHGAGE Writing Guide.md` for voice/tone
+- [ ] **Adding colors?** → Check `ENHGAGE Brand Identity.md` for the official palette
+- [ ] **Designing illustrations or characters?** → Follow `ENHGAGE Illustration Guide.md`
+- [ ] **Writing success/error messages?** → Use the tone guidelines in `ENHGAGE Writing Guide.md`
+- [ ] **Using emoji?** → Only use approved emoji from `ENHGAGE Resources.md`
+
+### Quick Reference: Core Brand Values
+
+| Value | Meaning |
+|-------|---------|
+| **Expressive** | Brief, active voice, direct, excited |
+| **Playful** | Friendly, jolly, creative, clever in quick doses |
+| **Embracing** | Supportive, gender-neutral, uses contractions, clear |
+| **Worldly** | Interested, knowledgeable, universal, multilingual-aware |
+
+---
+
+## 📐 Code Quality Standards (MANDATORY)
+
+**CRITICAL**: Before writing any code, consult `CODE_QUALITY.md` for file size limits and modularity requirements.
+
+### Key Rules:
+- ⚠️ **Hard Limit**: No file should exceed **600 lines**
+- ✅ **Ideal Range**: Keep files between **150-300 lines**
+- 🔧 **One Component Per File**: Don't lump multiple components together
+- 🎯 **Extract Logic**: Use custom hooks, utils, and constants
+- 📦 **Modular & Reusable**: Create small, focused functions
+
+See `CODE_QUALITY.md` for complete guidelines, examples, and refactoring strategies.
 
 ---
 
@@ -14,8 +64,13 @@ This document serves as the **source of truth** for any AI agent working on the 
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Animations**: `motion/react` (Framer Motion) & `canvas-confetti`
-- **Icons**: `lucide-react`
+- **Icons**: Custom SVG icons in `src/assets/icons/` (preferred) or `lucide-react` (fallback only)
 - **Assets**: Figma plugin imports (handled via `vite.config.ts` aliases)
+
+### Icon Usage (IMPORTANT)
+1. **ALWAYS** check `src/assets/icons/` first for existing SVG icons before using any icon library.
+2. **Only use `lucide-react`** as a fallback if the required icon does not exist in the assets folder.
+3. Import SVG icons via `src/constants/assets.ts` for consistency.
 
 ---
 
@@ -89,6 +144,44 @@ Every interactive element must feel "tactile".
 
 ---
 
+## ✍️ Writing & Copy Guidelines
+
+All in-app text must follow the ENHGAGE voice. Reference `docs/brand/ENHGAGE Writing Guide.md` for full details.
+
+### Quick Rules for UI Copy
+
+| Context | Tone | Example |
+|---------|------|---------|
+| Success states | Celebrate! Use exclamation points | "Awesome work!" not "You have successfully passed" |
+| Error/failure states | Supportive, encouraging | "Not quite correct. Try again!" not "Incorrect." |
+| Notifications | Brief, excited, direct | "You're on a 5-day streak! 🔥" |
+| Buttons | All caps, no punctuation | `CONTINUE`, `LET'S GO`, `TRY AGAIN` |
+
+### Copy Don'ts
+- ❌ Don't be long-winded or passive voice
+- ❌ Don't use gendered pronouns (use they/them)
+- ❌ Don't be sarcastic, smug, or mean-spirited
+- ❌ Don't use slang or references not everyone knows
+
+---
+
+## 🎭 Illustration & Character Rules
+
+Reference `docs/brand/ENHGAGE Illustration Guide.md` for full details.
+
+### Shape Language
+- All illustrations use **rounded rectangles**, **circles**, and **rounded triangles**
+- **No pointy shapes** – they are off-brand
+- Shadows are **pill-shaped**, never ovals
+
+### Character Design
+- Keep characters simple (~15 shapes ideal)
+- Eyes: round, glasses, almond, linear, or dots (geometric only, no ovals)
+- Hands: Keep abstract as circles, max 4 fingers if needed
+- Always pose characters – no static, expressionless states
+
+---
+
 ## 📝 Development Workflows
 
 ### Adding a New Screen
@@ -110,7 +203,26 @@ Every interactive element must feel "tactile".
 ---
 
 ## 🚫 Anti-Patterns (What NOT to do)
+
+### Code Anti-Patterns
+- **Do not** create files exceeding 600 lines (see `CODE_QUALITY.md`).
+- **Do not** create large components (>300 lines ideal, >600 lines forbidden). Break them down.
 - **Do not** write inline styles for everything; use Tailwind.
 - **Do not** make "flat" buttons; use the `Button` component or mimic its 3D style.
 - **Do not** import images directly like `import logo from '../assets/logo.png'`. Use `src/constants/assets.ts`.
-- **Do not** create large components (>200 lines). Break them down.
+- **Do not** duplicate logic across files; extract to utils or hooks.
+- **Do not** use `lucide-react` icons without first checking `src/assets/icons/` for an existing SVG icon.
+
+### Design Anti-Patterns
+- **Do not** use colors outside the brand palette without checking `docs/brand/`.
+- **Do not** write copy without referencing the Writing Guide.
+- **Do not** create pointy shapes in illustrations.
+- **Do not** use gray as a base color in illustrations (use light pastels).
+- **Do not** use emojis in the UI. Use SVG icons from `src/assets/icons/` instead.
+- **Do not** use gradients. Use solid colors from the brand palette.
+
+### Brand Anti-Patterns
+- **Do not** change logo colors, proportions, or spacing.
+- **Do not** use unapproved emoji (see `docs/brand/ENHGAGE Resources.md`).
+- **Do not** use passive voice or long-winded sentences.
+- **Do not** be sarcastic, smug, or mean-spirited in any copy.
