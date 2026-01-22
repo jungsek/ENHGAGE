@@ -29,6 +29,7 @@ import lockIcon from "@/assets/icons/lock.svg";
 import coinIcon from "@/assets/icons/diamond.svg"; // Placeholder
 import firstAidIcon from "@/assets/icons/heart.svg"; // Placeholder
 import lightningIcon from "@/assets/icons/lightning.svg";
+import timerIcon from "@/assets/icons/timer.svg";
 import flagIcon from "@/assets/icons/map.svg"; // Placeholder
 import blueDotIcon from "@/assets/icons/blue-dot.svg";
 
@@ -44,6 +45,33 @@ import profileIcon from "@/assets/icons/female.svg";
 import checkIcon from "@/assets/icons/Check.svg";
 import checkFreezeIcon from "@/assets/icons/Check-1.svg";
 import checkDoneIcon from "@/assets/icons/Check-2.svg";
+
+// Medal Icons
+import medalFirstIcon from "@/assets/icons/medal-first.svg";
+import medalSecondIcon from "@/assets/icons/medal-second.svg";
+import medalThirdIcon from "@/assets/icons/medal-third.svg";
+import medalFourthIcon from "@/assets/icons/medal-fourth.svg";
+
+import medalFifthIcon from "@/assets/icons/medal-fifth.svg";
+import medalSixthIcon from "@/assets/icons/medal-sixth.svg";
+import medalSeventhIcon from "@/assets/icons/medal-seventh.svg";
+import medalEighthIcon from "@/assets/icons/medal-eighth.svg";
+import medalNinthIcon from "@/assets/icons/medal-ninth.svg";
+import medalTenthIcon from "@/assets/icons/medal-tenth.svg";
+import medalEleventhIcon from "@/assets/icons/medal-eleventh.svg";
+
+// School Icons
+import iteLogo from "@/assets/schools/ite.png";
+import nypLogo from "@/assets/schools/nanyang-poly.png";
+import npLogo from "@/assets/schools/ngee-ann-poly.png";
+import ntuLogo from "@/assets/schools/ntu.png";
+import nusLogo from "@/assets/schools/nus.png";
+import rpLogo from "@/assets/schools/republic-poly.png";
+import sitLogo from "@/assets/schools/sit.png";
+import smuLogo from "@/assets/schools/smu.png";
+import sussLogo from "@/assets/schools/suss.png";
+import sutdLogo from "@/assets/schools/sutd.png";
+import tpLogo from "@/assets/schools/temasek-poly.png";
 
 export const IMAGES = {
     enhgageIcon,
@@ -80,6 +108,7 @@ export const IMAGES = {
         coin: coinIcon,
         firstAid: firstAidIcon,
         lightning: lightningIcon,
+        timer: timerIcon,
         flag: flagIcon,
         blueDot: blueDotIcon,
 
@@ -95,6 +124,32 @@ export const IMAGES = {
         social: socialIcon,
         rewards: rewardsIcon,
         profile: profileIcon,
+
+        // Medals
+        medalFirst: medalFirstIcon,
+        medalSecond: medalSecondIcon,
+        medalThird: medalThirdIcon,
+        medalFourth: medalFourthIcon,
+        medalFifth: medalFifthIcon,
+        medalSixth: medalSixthIcon,
+        medalSeventh: medalSeventhIcon,
+        medalEighth: medalEighthIcon,
+        medalNinth: medalNinthIcon,
+        medalTenth: medalTenthIcon,
+        medalEleventh: medalEleventhIcon,
+    },
+    schools: {
+        ite: iteLogo,
+        nyp: nypLogo,
+        np: npLogo,
+        ntu: ntuLogo,
+        nus: nusLogo,
+        rp: rpLogo,
+        sit: sitLogo,
+        smu: smuLogo,
+        suss: sussLogo,
+        sutd: sutdLogo,
+        tp: tpLogo,
     }
 };
 

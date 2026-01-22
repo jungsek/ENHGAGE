@@ -4,6 +4,7 @@
 import React from "react";
 import { motion } from "motion/react";
 import { HookCard as HookCardType } from "@/types/LessonTypes";
+import { Button } from "@/components/common/Button";
 
 interface HookCardProps {
     card: HookCardType;
@@ -38,9 +39,11 @@ export const HookCard: React.FC<HookCardProps> = ({ card, onContinue }) => {
                 </p>
             </div>
 
-            {/* Tap to continue hint */}
-            <div className="mt-auto pt-8 pb-4 text-center">
-                <p className="text-gray-400 text-sm">Tap to continue</p>
+            {/* Continue Button Footer */}
+            <div className="mt-auto -mx-6 p-6 border-t border-gray-100 bg-white">
+                <Button variant="primary" fullWidth onClick={onContinue}>
+                    CONTINUE
+                </Button>
             </div>
         </motion.div>
     );

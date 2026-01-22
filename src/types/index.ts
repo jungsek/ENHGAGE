@@ -40,6 +40,7 @@ export interface InstitutionRanking {
     trend: "up" | "down" | "same";
     trendAmount?: number;
     logoColor?: string;
+    logo?: string;
 }
 
 export interface UserSchoolStats {

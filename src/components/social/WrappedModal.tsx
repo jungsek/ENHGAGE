@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { X, Flame, Trophy, Star, Heart, Share2 } from "lucide-react";
+import { X, Flame, Trophy, Heart, Share2 } from "lucide-react";
 import { MOCK_WRAPPED_DATA } from "@/constants/socialData";
 import { useAppStore } from "@/store/useAppStore";
 import { IMAGES } from "@/constants/assets";
@@ -15,7 +15,31 @@ type StoryCard = {
     id: string;
     title: string;
     content: React.ReactNode;
-    bgGradient: string;
+};
+
+// Helper function to get gradient styles (using inline styles to avoid Tailwind JIT purge issues)
+const getBackgroundGradient = (cardId: string): React.CSSProperties => {
+    const gradients: Record<string, React.CSSProperties> = {
+        intro: {
+            backgroundImage: "linear-gradient(to bottom right, rgb(147, 51, 234), rgb(236, 72, 153), rgb(251, 146, 60))",
+        },
+        overview: {
+            backgroundImage: "linear-gradient(to bottom right, rgb(37, 99, 235), rgb(59, 130, 246), rgb(34, 211, 238))",
+        },
+        streak: {
+            backgroundImage: "linear-gradient(to bottom right, rgb(249, 115, 22), rgb(239, 68, 68), rgb(236, 72, 153))",
+        },
+        activity: {
+            backgroundImage: "linear-gradient(to bottom right, rgb(34, 197, 94), rgb(16, 185, 129), rgb(20, 184, 166))",
+        },
+        community: {
+            backgroundImage: "linear-gradient(to bottom right, rgb(236, 72, 153), rgb(244, 63, 94), rgb(239, 68, 68))",
+        },
+        summary: {
+            backgroundImage: "linear-gradient(to bottom right, rgb(124, 58, 237), rgb(168, 85, 247), rgb(217, 70, 239))",
+        },
+    };
+    return gradients[cardId] || gradients.intro;
 };
 
 export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
@@ -27,7 +51,6 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
         {
             id: "intro",
             title: "Opening",
-            bgGradient: "from-purple-600 via-pink-500 to-orange-400",
             content: (
                 <div className="flex flex-col items-center justify-center h-full text-center px-8">
                     <motion.div
@@ -43,7 +66,7 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
                                         ? IMAGES.ellahFull
                                         : IMAGES.olahFull
                             }
-                            className="h-40 object-contain mb-6"
+                            className="h-32 object-contain mb-6"
                             alt="Mascot"
                         />
                     </motion.div>
@@ -77,7 +100,6 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
         {
             id: "overview",
             title: "Overview",
-            bgGradient: "from-blue-600 via-blue-500 to-cyan-400",
             content: (
                 <div className="flex flex-col items-center justify-center h-full text-center px-8">
                     <motion.div
@@ -133,7 +155,6 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
         {
             id: "streak",
             title: "Streak",
-            bgGradient: "from-orange-500 via-red-500 to-pink-500",
             content: (
                 <div className="flex flex-col items-center justify-center h-full text-center px-8">
                     <motion.div
@@ -178,7 +199,6 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
         {
             id: "activity",
             title: "Activity",
-            bgGradient: "from-green-500 via-emerald-500 to-teal-500",
             content: (
                 <div className="flex flex-col items-center justify-center h-full text-center px-8">
                     <motion.div
@@ -217,7 +237,6 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
         {
             id: "community",
             title: "Community",
-            bgGradient: "from-pink-500 via-rose-500 to-red-500",
             content: (
                 <div className="flex flex-col items-center justify-center h-full text-center px-8">
                     <motion.div
@@ -255,7 +274,6 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
         {
             id: "summary",
             title: "Summary",
-            bgGradient: "from-violet-600 via-purple-500 to-fuchsia-500",
             content: (
                 <div className="flex flex-col items-center justify-center h-full text-center px-8">
                     <motion.div
@@ -340,18 +358,21 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
                 className="fixed inset-0 z-50"
                 onClick={handleTap}
             >
-                {/* Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${storyCards[currentIndex].bgGradient}`} />
+                {/* Background with inline CSS gradients */}
+                <div
+                    className="absolute inset-0"
+                    style={getBackgroundGradient(storyCards[currentIndex].id)}
+                />
 
                 {/* Progress Bars */}
                 <div className="absolute top-4 left-4 right-4 flex gap-1 z-10">
                     {storyCards.map((_, index) => (
                         <div
                             key={index}
-                            className="flex-1 h-1 rounded-full bg-white/30 overflow-hidden"
+                            className="flex-1 h-1.5 rounded-full bg-white/30 overflow-hidden backdrop-blur-sm"
                         >
                             <motion.div
-                                className="h-full bg-white"
+                                className="h-full bg-white shadow-sm"
                                 initial={{ width: 0 }}
                                 animate={{
                                     width: index < currentIndex ? "100%" : index === currentIndex ? "100%" : "0%",
@@ -368,7 +389,7 @@ export const WrappedModal = ({ isOpen, onClose }: WrappedModalProps) => {
                         e.stopPropagation();
                         onClose();
                     }}
-                    className="absolute top-10 right-4 z-20 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center"
+                    className="absolute top-10 right-4 z-20 w-8 h-8 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center hover:bg-white/30 transition-colors"
                 >
                     <X className="w-5 h-5 text-white" />
                 </button>

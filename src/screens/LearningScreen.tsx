@@ -2,6 +2,7 @@
 // Shows lesson list or active lesson flow
 
 import React, { useState } from "react";
+import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
 import { BookOpen, ChevronRight, Clock, Zap } from "lucide-react";
 import { useLearningStore } from "@/store/useLearningStore";
@@ -15,7 +16,8 @@ import { LearnCard } from "@/components/learning/LearnCard";
 import { MultipleChoiceQuiz } from "@/components/learning/MultipleChoiceQuiz";
 import { ApplyCard } from "@/components/learning/ApplyCard";
 import { ConnectCard } from "@/components/learning/ConnectCard";
-import { LessonCompleteScreen } from "@/components/learning/LessonCompleteScreen";
+import { AppHeader } from "@/components/common/AppHeader";
+import { useAppStore } from "@/store/useAppStore";
 
 export const LearningScreen: React.FC = () => {
     const {
@@ -28,6 +30,8 @@ export const LearningScreen: React.FC = () => {
         completeLesson,
         exitLesson,
     } = useLearningStore();
+
+    const { profile } = useAppStore();
 
     // Toggle body class to hide navbar
     React.useEffect(() => {
@@ -102,22 +106,11 @@ export const LearningScreen: React.FC = () => {
         }
     };
 
-    // Show completion screen
-    if (showCompleteScreen && lessonResult) {
-        return (
-            <div className="fixed inset-0 z-[100] overflow-y-auto bg-white">
-                <LessonCompleteScreen
-                    result={lessonResult}
-                    onClaimXP={handleClaimXP}
-                />
-            </div>
-        );
-    }
 
     // Show active lesson
     if (isLessonActive && currentLesson && lessonProgress) {
-        return (
-            <div className="fixed inset-0 z-[100] flex flex-col bg-white overflow-y-auto">
+        return createPortal(
+            <div className="fixed inset-0 z-[100] flex flex-col bg-white overflow-y-auto overscroll-none touch-pan-y">
                 {/* Header with progress */}
                 <LessonHeader
                     currentCard={lessonProgress.currentCardIndex + 1}
@@ -127,7 +120,7 @@ export const LearningScreen: React.FC = () => {
                 />
 
                 {/* Card Content */}
-                <div className="flex-1 px-6 py-4 overflow-y-auto">
+                <div className="flex-1 px-6 py-4 overflow-y-auto pb-safe">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={lessonProgress.currentCardIndex}
@@ -137,7 +130,8 @@ export const LearningScreen: React.FC = () => {
                         </motion.div>
                     </AnimatePresence>
                 </div>
-            </div>
+            </div>,
+            document.body
         );
     }
 
@@ -145,6 +139,12 @@ export const LearningScreen: React.FC = () => {
     return (
         <div className="flex flex-col min-h-screen bg-gray-50 pb-24">
             {/* Header */}
+            <AppHeader
+                gems={520}
+                streak={profile.streak}
+            />
+
+            {/* Page Title */}
             <div className="bg-white px-6 py-6 border-b border-gray-100">
                 <h1 className="text-2xl font-bold font-feather text-gray-800">
                     Learn

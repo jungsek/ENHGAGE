@@ -63,12 +63,12 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({ card, onContinue }) => {
             </div>
 
             {/* CTA Button */}
-            <div className="mt-auto pt-6">
+            <div className="mt-auto -mx-6 p-6 border-t border-gray-100 bg-white">
                 {isCompleted ? (
                     <motion.div
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        className="flex items-center justify-center gap-2 py-4"
+                        className="flex items-center justify-center gap-2 py-2"
                     >
                         <CheckCircle2 size={32} className="text-[#58CC02]" />
                         <span className="text-[#58CC02] font-bold text-lg">
@@ -78,7 +78,6 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({ card, onContinue }) => {
                 ) : (
                     <Button
                         variant="primary"
-                        size="lg"
                         fullWidth
                         onClick={handleAction}
                     >

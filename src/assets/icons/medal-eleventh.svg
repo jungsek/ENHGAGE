@@ -1,0 +1,17 @@
+<svg width="100" height="100" viewBox="-50 -50 100 100" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .medal-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 45px;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+    </style>
+  </defs>
+  <!-- 11th Place -->
+  <circle cx="0" cy="0" r="45" fill="#bdbdbd" />
+  <circle cx="0" cy="0" r="35" fill="#f5f5f5" />
+  <text x="0" y="4" fill="#757575" class="medal-text">11</text>
+</svg>

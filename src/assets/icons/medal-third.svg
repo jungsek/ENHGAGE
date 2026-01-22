@@ -1,0 +1,30 @@
+<svg width="100" height="130" viewBox="-50 -65 100 130" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .medal-text {
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        font-size: 55px;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+      .inner-shadow {
+        fill: black;
+        fill-opacity: 0.1;
+      }
+    </style>
+    <clipPath id="circle-clip-3">
+      <circle cx="0" cy="0" r="35" />
+    </clipPath>
+  </defs>
+  <!-- 3rd Place (Bronze) -->
+  <path d="M-45,-15 V 60 L 0, 45 L 45, 60 V -15" fill="#c18c5d" />
+  <circle cx="0" cy="-15" r="45" fill="#c18c5d" />
+  <g transform="translate(0, -15)">
+    <circle cx="0" cy="0" r="35" fill="#eecba5" />
+    <g clip-path="url(#circle-clip-3)">
+      <rect x="-50" y="0" width="100" height="50" transform="rotate(45)" class="inner-shadow" />
+    </g>
+    <text x="0" y="4" fill="#6d4c41" class="medal-text">3</text>
+  </g>
+</svg>

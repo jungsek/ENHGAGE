@@ -67,7 +67,13 @@ export const INSTITUTIONS_DATA = [
             { value: "SIT", label: "Singapore Institute of Technology (SIT)" },
             { value: "SUSS", label: "Singapore University of Social Sciences (SUSS)" }
         ]
-    }
+    },
+    {
+        label: "ITE",
+        options: [
+            { value: "ITE", label: "Institute of Technical Education (ITE)" },
+        ]
+    },
 ];
 
 export const OTHER_INSTITUTION_OPTIONS = [

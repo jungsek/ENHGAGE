@@ -2,6 +2,7 @@ import { motion } from "motion/react";
 import { cn } from "@/components/ui/utils";
 import { InstitutionRanking } from "@/types";
 import { TrendingUp, TrendingDown, Minus } from "lucide-react";
+import { IMAGES } from "@/constants/assets";
 
 interface LeaderboardRowProps {
     institution: InstitutionRanking;
@@ -10,6 +11,7 @@ interface LeaderboardRowProps {
 }
 
 export const LeaderboardRow = ({ institution, isUserSchool = false, index }: LeaderboardRowProps) => {
+    const rank = index + 1;
     const TrendIcon = institution.trend === "up"
         ? TrendingUp
         : institution.trend === "down"
@@ -22,27 +24,67 @@ export const LeaderboardRow = ({ institution, isUserSchool = false, index }: Lea
             ? "text-red-500"
             : "text-gray-300";
 
+    const getRankDisplay = () => {
+        const RANK_ICONS: Record<number, string> = {
+            1: IMAGES.icons.medalFirst,
+            2: IMAGES.icons.medalSecond,
+            3: IMAGES.icons.medalThird,
+        };
+
+        if (RANK_ICONS[rank]) {
+            return <img src={RANK_ICONS[rank]} alt={`${rank}`} className="w-8 h-8 object-contain" />;
+        }
+
+        // For rank 4+, show number in a grey circle
+        return (
+            <div className="w-[28px] h-[28px] shrink-0 rounded-full flex items-center justify-center">
+                <span className={cn(
+                    "font-din font-extrabold text-xs translate-y-[1px]",
+                    isUserSchool ? "text-[#00695C]" : "text-gray-500"
+                )}>
+                    {rank}
+                </span>
+            </div>
+        );
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: index * 0.05 }}
             className={cn(
-                "flex items-center gap-3 p-3 rounded-2xl border-2 transition-all",
+                "flex items-center gap-3 p-3 rounded-2xl border-2 transition-all hover:bg-gray-50",
                 isUserSchool
-                    ? "bg-[#E0F2F1] border-[#00897B] border-b-4 shadow-[0_0_20px_rgba(0,137,123,0.2)]"
-                    : "bg-white border-gray-100 border-b-4 hover:border-gray-200"
+                    ? "bg-[#E0F2F1] border-[#00897B]/30" // Prominent teal highlight for user's row
+                    : "border-transparent"
             )}
         >
-            {/* Rank Circle */}
+            {/* Rank Indicator */}
             <div className={cn(
-                "w-9 h-9 rounded-full flex items-center justify-center font-din font-extrabold text-sm",
-                isUserSchool
-                    ? "bg-[#00897B] text-white"
-                    : "bg-gray-100 text-gray-500"
+                "w-8 h-8 flex items-center justify-center shrink-0 overflow-hidden", // Fixed size to w-8 to match medals
+                rank > 3 ? "font-din font-bold" : ""
             )}>
-                {institution.rank}
+                {getRankDisplay()}
             </div>
+
+            {/* School Icon */}
+            {institution.logo ? (
+                <div className="w-10 h-10 rounded-full shrink-0 shadow-sm overflow-hidden bg-white">
+                    <img
+                        src={institution.logo}
+                        alt={institution.shortName}
+                        className="w-full h-full object-contain"
+                    />
+                </div>
+            ) : (
+                <div
+                    className="w-10 h-10 rounded-full flex items-center justify-center shrink-0 text-white font-din font-bold text-sm shadow-sm"
+                    style={{ backgroundColor: institution.logoColor }}
+                >
+                    {institution.shortName.substring(0, 2)}
+                </div>
+            )}
 
             {/* School Info */}
             <div className="flex-1 min-w-0">
@@ -54,7 +96,7 @@ export const LeaderboardRow = ({ institution, isUserSchool = false, index }: Lea
                         {institution.shortName}
                     </span>
                     {isUserSchool && (
-                        <span className="text-[10px] font-din font-extrabold text-white bg-[#00897B] px-1.5 py-0.5 rounded uppercase">
+                        <span className="text-[10px] font-din font-extrabold text-[#00897B] bg-[#E0F2F1] px-1.5 py-0.5 rounded uppercase">
                             You
                         </span>
                     )}

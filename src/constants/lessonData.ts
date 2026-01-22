@@ -95,7 +95,7 @@ export const ALERT_LESSON: Lesson = {
             id: "alert-01-connect",
             type: "connect",
             text: "Need to talk to someone? The ALERT programme at NHG Polyclinics offers free, confidential mental health support for youth.",
-            ctaText: "Learn About ALERT →",
+            ctaText: "Learn About ALERT",
             programmeName: "ALERT Programme",
             deepLink: "https://mindline.sg",
         },

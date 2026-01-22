@@ -7,6 +7,7 @@ import { Sparkles } from "lucide-react";
 import { CheckCard } from "@/types/LessonTypes";
 import { FeedbackPanel } from "./FeedbackPanel";
 import { Button } from "@/components/common/Button";
+import { Card } from "@/components/common/Card";
 import { cn } from "@/components/ui/utils";
 
 interface MultipleChoiceQuizProps {
@@ -45,6 +46,12 @@ export const MultipleChoiceQuiz: React.FC<MultipleChoiceQuizProps> = ({
         onContinue();
     };
 
+    const handleRetry = () => {
+        setShowFeedback(false);
+        // Keep selection or clear it? Duolingo usually keeps it.
+        // We just hide feedback to let user select again.
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -68,15 +75,14 @@ export const MultipleChoiceQuiz: React.FC<MultipleChoiceQuizProps> = ({
                 {card.question}
             </h2>
 
-            {/* Options Grid */}
-            <div className="grid grid-cols-2 gap-3 flex-1">
+            <div className="grid grid-cols-2 gap-3">
                 {card.options.map((option, index) => (
-                    <motion.button
+                    <Card
                         key={option.id}
-                        initial={{ opacity: 0, scale: 0.9 }}
+                        variant="default"
+                        selected={selectedId === option.id && !showFeedback}
+                        onClick={() => handleSelect(option.id)}
                         animate={{
-                            opacity: 1,
-                            scale: 1,
                             // Shake animation for wrong answer
                             x: showFeedback && selectedId === option.id && !isCorrect
                                 ? [0, -10, 10, -10, 10, 0]
@@ -86,16 +92,11 @@ export const MultipleChoiceQuiz: React.FC<MultipleChoiceQuizProps> = ({
                             delay: index * 0.05,
                             x: { duration: 0.4 }
                         }}
-                        whileTap={{ scale: 0.95 }}
-                        onClick={() => handleSelect(option.id)}
-                        disabled={showFeedback}
+                        // @ts-ignore - motion props for Card
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
                         className={cn(
-                            "p-4 rounded-2xl border-2 border-b-4 transition-all duration-200",
-                            "flex flex-col items-center justify-center gap-2 min-h-[120px]",
-                            // Default state
-                            !selectedId && !showFeedback && "border-gray-200 bg-white hover:bg-gray-50",
-                            // Selected state (before checking)
-                            selectedId === option.id && !showFeedback && "border-[#1CB0F6] bg-[#DDF4FF] border-b-4",
+                            "flex flex-col items-center justify-center gap-2 h-auto min-h-[128px] text-center p-4",
                             // Correct answer revealed
                             showFeedback && option.isCorrect && "border-[#58CC02] bg-[#D7FFB8] border-b-4",
                             // Wrong answer selected
@@ -115,23 +116,23 @@ export const MultipleChoiceQuiz: React.FC<MultipleChoiceQuizProps> = ({
 
                         {/* Option Text */}
                         <span className={cn(
-                            "text-sm font-semibold text-center",
+                            "text-sm font-bold leading-tight",
                             showFeedback && option.isCorrect && "text-[#58CC02]",
                             showFeedback && selectedId === option.id && !option.isCorrect && "text-[#EA2B2B]",
-                            !showFeedback && "text-gray-700"
+                            !showFeedback && selectedId === option.id ? "text-[#00897B]" : "text-gray-700",
+                            !showFeedback && selectedId !== option.id && "text-gray-700"
                         )}>
                             {option.text}
                         </span>
-                    </motion.button>
+                    </Card>
                 ))}
             </div>
 
             {/* Check Button (shown when not yet answered) */}
             {!showFeedback && (
-                <div className="mt-auto pt-6">
+                <div className="mt-auto -mx-6 p-6 border-t border-gray-100 bg-white">
                     <Button
-                        variant="secondary"
-                        size="lg"
+                        variant="primary"
                         fullWidth
                         onClick={handleCheck}
                         disabled={!selectedId}
@@ -150,6 +151,7 @@ export const MultipleChoiceQuiz: React.FC<MultipleChoiceQuizProps> = ({
                 message={isCorrect ? card.feedbackCorrect : card.feedbackIncorrect}
                 isVisible={showFeedback}
                 onContinue={handleContinue}
+                onRetry={!isCorrect ? handleRetry : undefined}
             />
         </motion.div>
     );

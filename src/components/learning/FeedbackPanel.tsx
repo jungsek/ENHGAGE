@@ -11,6 +11,7 @@ interface FeedbackPanelProps {
     message: string;
     isVisible: boolean;
     onContinue: () => void;
+    onRetry?: () => void;
 }
 
 export const FeedbackPanel: React.FC<FeedbackPanelProps> = ({
@@ -18,6 +19,7 @@ export const FeedbackPanel: React.FC<FeedbackPanelProps> = ({
     message,
     isVisible,
     onContinue,
+    onRetry,
 }) => {
     const bgColor = isCorrect ? "bg-[#D7FFB8]" : "bg-[#FFDFE0]";
     const textColor = isCorrect ? "text-[#58CC02]" : "text-[#EA2B2B]";
@@ -53,15 +55,13 @@ export const FeedbackPanel: React.FC<FeedbackPanelProps> = ({
                         </p>
                     )}
 
-                    {/* Continue Button */}
+                    {/* Continue/Retry Button */}
                     <Button
-                        variant={isCorrect ? "secondary" : "danger"}
-                        size="lg"
+                        variant="primary"
                         fullWidth
-                        onClick={onContinue}
-                        className={isCorrect ? "" : "bg-[#EA2B2B] border-[#CC2626]"}
+                        onClick={onRetry || onContinue}
                     >
-                        CONTINUE
+                        {onRetry ? "TRY AGAIN" : "CONTINUE"}
                     </Button>
                 </motion.div>
             )}

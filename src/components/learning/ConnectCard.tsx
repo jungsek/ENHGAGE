@@ -3,7 +3,7 @@
 
 import React from "react";
 import { motion } from "motion/react";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 import { ConnectCard as ConnectCardType } from "@/types/LessonTypes";
 import { Button } from "@/components/common/Button";
 
@@ -66,27 +66,26 @@ export const ConnectCard: React.FC<ConnectCardProps> = ({ card, onComplete }) =>
             {/* Spacer */}
             <div className="flex-1" />
 
-            {/* Programme Link Button */}
-            <Button
-                variant="outline"
-                size="lg"
-                fullWidth
-                onClick={handleLink}
-                rightIcon={<ArrowRight size={18} />}
-                className="mb-3"
-            >
-                {card.ctaText}
-            </Button>
+            {/* Footer */}
+            <div className="mt-auto -mx-6 p-6 border-t border-gray-100 bg-white space-y-3">
+                {/* Programme Link Button */}
+                <Button
+                    variant="outline"
+                    fullWidth
+                    onClick={handleLink}
+                >
+                    {card.ctaText}
+                </Button>
 
-            {/* Complete Lesson Button */}
-            <Button
-                variant="secondary"
-                size="lg"
-                fullWidth
-                onClick={onComplete}
-            >
-                COMPLETE LESSON
-            </Button>
+                {/* Complete Lesson Button */}
+                <Button
+                    variant="primary"
+                    fullWidth
+                    onClick={onComplete}
+                >
+                    COMPLETE LESSON
+                </Button>
+            </div>
         </motion.div>
     );
 };
