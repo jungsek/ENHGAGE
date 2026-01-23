@@ -5,6 +5,7 @@ import React from "react";
 import { motion } from "motion/react";
 import { HookCard as HookCardType } from "@/types/LessonTypes";
 import { Button } from "@/components/common/Button";
+import { MascotSpeechBubble } from "./MascotSpeechBubble";
 
 interface HookCardProps {
     card: HookCardType;
@@ -32,11 +33,9 @@ export const HookCard: React.FC<HookCardProps> = ({ card, onContinue }) => {
                 </div>
             )}
 
-            {/* Hook Text */}
+            {/* Hook Text with Mascot Speech Bubble */}
             <div className="flex-1 px-2">
-                <p className="text-xl font-bold text-gray-800 leading-relaxed">
-                    {card.text}
-                </p>
+                <MascotSpeechBubble text={card.text} />
             </div>
 
             {/* Continue Button Footer */}

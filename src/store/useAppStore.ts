@@ -5,6 +5,9 @@ import { OnboardingStep, UserProfile, LeaderboardCategory, TimeFilter } from "@/
 interface AppState {
     step: OnboardingStep;
     profile: UserProfile;
+    // Daily Logic
+    checkDailyReset: () => void;
+    claimDailyReward: () => void;
     hasCompletedOnboarding: boolean;
     // Leaderboard State
     activeLeaderboardCategory: LeaderboardCategory;
@@ -19,6 +22,8 @@ interface AppState {
     // Leaderboard Actions
     setLeaderboardCategory: (category: LeaderboardCategory) => void;
     setTimeFilter: (filter: TimeFilter) => void;
+    // Quest Actions
+    completeQuest: (questId: string) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -34,13 +39,20 @@ export const useAppStore = create<AppState>()(
                 buddy: null,
                 buddyName: "",
                 referralSource: "",
-                points: 0,
+                // Leveling
+                level: 3,
+                currentXP: 350,
+                maxXP: 500,
+                points: 2000,
                 streak: {
                     current: 7,
                     status: "warm",
                     freezes: 1,
                     history: [true, true, true, true, true, true, false],
                 },
+                completedQuests: [], // Initialize completedQuests
+                dailyRewardClaimed: false,
+                lastActiveDate: new Date().toISOString().split('T')[0],
             },
             // Leaderboard State
             activeLeaderboardCategory: "overall",
@@ -71,14 +83,30 @@ export const useAppStore = create<AppState>()(
                     }
                 }),
             completeOnboarding: () => set({ hasCompletedOnboarding: true, step: "home" }),
-            // Add points to user profile
+            // Add points to user profile and handle leveling
             addPoints: (amount) =>
-                set((state) => ({
-                    profile: {
-                        ...state.profile,
-                        points: state.profile.points + amount,
-                    },
-                })),
+                set((state) => {
+                    const newTotalPoints = state.profile.points + amount;
+                    let newCurrentXP = (state.profile.currentXP || 0) + amount;
+                    let newLevel = state.profile.level || 1;
+                    const maxXP = state.profile.maxXP || 500;
+
+                    // Simple leveling logic: overflow XP goes to next level
+                    if (newCurrentXP >= maxXP) {
+                        newLevel += 1;
+                        newCurrentXP = newCurrentXP - maxXP;
+                        // For now we keep maxXP constant at 500 as per request
+                    }
+
+                    return {
+                        profile: {
+                            ...state.profile,
+                            points: newTotalPoints,
+                            level: newLevel,
+                            currentXP: newCurrentXP,
+                        },
+                    };
+                }),
             resetProfile: () =>
                 set({
                     step: "splash",
@@ -91,18 +119,61 @@ export const useAppStore = create<AppState>()(
                         buddy: null,
                         buddyName: "",
                         referralSource: "",
-                        points: 0,
+                        // Leveling
+                        level: 3,
+                        currentXP: 350,
+                        maxXP: 500,
+                        points: 2000,
                         streak: {
                             current: 7,
                             status: "warm",
                             freezes: 1,
                             history: [true, true, true, true, true, true, false],
                         },
+                        completedQuests: [],
                     },
+                }),
+            checkDailyReset: () =>
+                set((state) => {
+                    const today = new Date().toISOString().split('T')[0];
+                    if (state.profile.lastActiveDate !== today) {
+                        return {
+                            profile: {
+                                ...state.profile,
+                                lastActiveDate: today,
+                                completedQuests: [],
+                                dailyRewardClaimed: false,
+                            }
+                        };
+                    }
+                    return state;
+                }),
+            claimDailyReward: () =>
+                set((state) => {
+                    if (state.profile.dailyRewardClaimed) return state;
+                    return {
+                        profile: {
+                            ...state.profile,
+                            dailyRewardClaimed: true,
+                            points: state.profile.points + 500 // Award 500 XP
+                        }
+                    };
                 }),
             // Leaderboard Actions
             setLeaderboardCategory: (category) => set({ activeLeaderboardCategory: category }),
             setTimeFilter: (filter) => set({ activeTimeFilter: filter }),
+            completeQuest: (questId) =>
+                set((state) => ({
+                    profile: {
+                        ...state.profile,
+                        completedQuests: (state.profile.completedQuests || []).includes(questId)
+                            ? state.profile.completedQuests
+                            : [...(state.profile.completedQuests || []), questId],
+                        // Auto award points here if needed? 
+                        // For now we assume logic handles points separately or we add it here.
+                        // Let's keep it simple: just track completion.
+                    },
+                })),
         }),
         {
             name: 'enhgage-storage',

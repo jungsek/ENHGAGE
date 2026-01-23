@@ -183,3 +183,12 @@
 html {
   font-size: var(--font-size);
 }
+
+/* Map screen overrides - allow full touch interaction on map */
+.leaflet-container {
+  touch-action: none !important;
+}
+
+.leaflet-container * {
+  touch-action: none !important;
+}

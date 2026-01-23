@@ -2374,3 +2374,12 @@ html {
     font-weight: 700;
   }
 }
+
+/* Leaflet Map - Override touch-action to allow full map interaction */
+.leaflet-container {
+  touch-action: none !important;
+}
+
+.leaflet-container * {
+  touch-action: none !important;
+}

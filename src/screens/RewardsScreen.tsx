@@ -6,66 +6,14 @@ import { Button } from "@/components/common/Button";
 import { motion, AnimatePresence } from "motion/react";
 import { Clock } from "lucide-react";
 import { useMascot } from "@/hooks/useMascot";
-
-// Mock Data for Rewards
-interface Reward {
-    id: string;
-    title: string;
-    description: string;
-    cost: number;
-    image?: string;
-    category: "voucher" | "activity" | "digital";
-    partner?: string;
-}
-
-const REWARDS: Reward[] = [
-    {
-        id: "r1",
-        title: "$5 FairPrice Voucher",
-        description: "Get $5 off your next healthy grocery shop.",
-        cost: 1500,
-        category: "voucher",
-        partner: "NTUC FairPrice"
-    },
-    {
-        id: "r2",
-        title: "$5 Watsons Voucher",
-        description: "Redeem for health and wellness products.",
-        cost: 1500,
-        category: "voucher",
-        partner: "Watsons"
-    },
-    {
-        id: "r3",
-        title: "ActiveSG Gym Pass",
-        description: "One-time entry to any ActiveSG gym.",
-        cost: 600,
-        category: "activity",
-        partner: "ActiveSG"
-    },
-    {
-        id: "r4",
-        title: "Golden Village Ticket",
-        description: "Catch the latest blockbuster.",
-        cost: 3500,
-        category: "voucher",
-        partner: "Golden Village"
-    },
-    {
-        id: "r5",
-        title: "Olah Digital Sticker Pack",
-        description: "Exclusive stickers for WhatsApp/Telegram.",
-        cost: 200,
-        category: "digital",
-        partner: "ENHGAGE"
-    }
-];
+import { REWARDS, Reward } from "@/constants/rewardsData";
+import { MascotSpeechBubble } from "@/components/learning/MascotSpeechBubble";
 
 export const RewardsScreen: React.FC = () => {
     const { profile, addPoints } = useAppStore();
     const { mascotFull } = useMascot();
     const [activeTab, setActiveTab] = useState<"rewards" | "history">("rewards");
-    const [selectedCategory, setSelectedCategory] = useState<"all" | "voucher" | "activity" | "digital">("all");
+    const [selectedCategory, setSelectedCategory] = useState<"all" | "voucher" | "activity" | "digital" | "experience">("all");
     const [showRedemptionSuccess, setShowRedemptionSuccess] = useState<Reward | null>(null);
 
     const filteredRewards = REWARDS.filter(r =>
@@ -94,26 +42,12 @@ export const RewardsScreen: React.FC = () => {
                 streak={profile.streak}
             />
 
-            {/* Page Title / Mascot Guide */}
-            <div className="bg-white px-6 py-4 border-b border-gray-100 flex items-end gap-2">
-                {/* Mascot */}
-                <div className="relative shrink-0">
-                    <img
-                        src={mascotFull}
-                        alt="Mascot"
-                        className="w-20 h-auto object-contain"
-                    />
-                </div>
+            {/* Spacer at top for breathing room */}
+            <div className="h-10" />
 
-                {/* Speech Bubble */}
-                <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-4 mb-2 flex-1">
-                    <p className="text-gray-800 font-bold text-sm">
-                        Treat yourself for staying healthy!
-                    </p>
-
-                    {/* Speech Bubble Tail */}
-                    <div className="absolute -left-[9px] bottom-4 w-4 h-4 bg-white border-l-2 border-b-2 border-gray-200 transform rotate-45 z-10"></div>
-                </div>
+            {/* Content Text with Mascot Speech Bubble */}
+            <div className="">
+                <MascotSpeechBubble text="Earn more points by completing lessons! Spend your points to redeem rewards." className="px-6 mb-6" />
             </div>
 
             {/* Content */}
@@ -122,7 +56,7 @@ export const RewardsScreen: React.FC = () => {
                     <div className="space-y-6">
                         {/* Categories */}
                         <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                            {["all", "voucher", "activity", "digital"].map((cat) => (
+                            {["all", "voucher", "activity", "digital", "experience"].map((cat) => (
                                 <button
                                     key={cat}
                                     onClick={() => setSelectedCategory(cat as any)}
@@ -140,8 +74,16 @@ export const RewardsScreen: React.FC = () => {
                         <div className="grid grid-cols-1 gap-4">
                             {filteredRewards.map((reward) => (
                                 <div key={reward.id} className="bg-white border-2 border-gray-100 rounded-2xl p-4 shadow-sm flex items-center gap-4 relative overflow-hidden group">
-                                    <div className="w-16 h-16 bg-gray-50 rounded-xl flex items-center justify-center text-3xl border border-gray-100 shrink-0">
-                                        {reward.category === "voucher" ? "🎟️" : reward.category === "activity" ? "🏋️" : "📱"}
+                                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center text-3xl border border-gray-100 shrink-0 overflow-hidden p-2">
+                                        {reward.image ? (
+                                            <img
+                                                src={reward.image}
+                                                alt={reward.title}
+                                                className="w-full h-full object-contain"
+                                            />
+                                        ) : (
+                                            <span>{reward.category === "voucher" ? "🎟️" : reward.category === "activity" ? "🏋️" : reward.category === "digital" ? "📱" : "🌟"}</span>
+                                        )}
                                     </div>
                                     <div className="flex-1">
                                         <div className="flex justify-between items-start">
@@ -182,6 +124,8 @@ export const RewardsScreen: React.FC = () => {
                         <p className="font-din font-bold text-gray-400">No redemption history yet.</p>
                     </div>
                 )}
+                {/* Spacer to prevent content being cut off by bottom navbar */}
+                <div className="h-24" />
             </div>
 
             {/* Redemption Success Modal */}

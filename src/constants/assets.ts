@@ -1,18 +1,39 @@
 import olahHead from "@/assets/mascots/olah/head.png";
 import olahFull from "@/assets/mascots/olah/full.png";
+import olahHappy from "@/assets/mascots/olah/happy.png";
 import lylahHead from "@/assets/mascots/lylah/head.png";
 import lylahFull from "@/assets/mascots/lylah/full.png";
+import lylahHappy from "@/assets/mascots/lylah/happy.png";
 import ellahHead from "@/assets/mascots/ellah/head.png";
 import ellahFull from "@/assets/mascots/ellah/full.png";
+import ellahHappy from "@/assets/mascots/ellah/happy.png";
 import singpassLogo from "@/assets/brand/singpass_logo.png";
 import enhgageIcon from "@/assets/brand/enhgage_icon.png";
 import nhgLogo from "@/assets/brand/nhg_logo.png";
 import taglineImg from "@/assets/brand/tagline.png";
+import enhgageFullLogo from "@/assets/logo.png";
 
 // Stat Badge Images
 import statXpBadge from "@/assets/stats/stat-xp.png";
 import statGoodBadge from "@/assets/stats/stat-good.png";
 import statSpeedyBadge from "@/assets/stats/stat-speedy.png";
+
+// Reward Images
+import activeSgImg from "@/assets/rewards/activesg.png";
+import climbingCentralImg from "@/assets/rewards/climbcentral.png";
+import decathlonImg from "@/assets/rewards/decathlon.png";
+import fairPriceImg from "@/assets/rewards/fairprice.png";
+import grabImg from "@/assets/rewards/grab.png";
+import guardianImg from "@/assets/rewards/guardian.png";
+import starbucksImg from "@/assets/rewards/starbucks.png";
+import watsonsImg from "@/assets/rewards/watsons.png";
+import anytimeFitnessImg from "@/assets/rewards/anytimefitness.png";
+import boostImg from "@/assets/rewards/boost.png";
+import euYanSangImg from "@/assets/rewards/euyansang.png";
+import mrBeanImg from "@/assets/rewards/mrbean.png";
+import saladStopImg from "@/assets/rewards/saladstop.png";
+import sgPilatesImg from "@/assets/rewards/sgpilates.png";
+import trueFitnessImg from "@/assets/rewards/truefitness.png";
 
 // Quest Images
 import questTasksIcon from "@/assets/quests/task1.png";
@@ -43,6 +64,7 @@ import lightningIcon from "@/assets/icons/lightning.svg";
 import timerIcon from "@/assets/icons/timer.svg";
 import flagIcon from "@/assets/icons/map.svg"; // Placeholder
 import blueDotIcon from "@/assets/icons/blue-dot.svg";
+import runIcon from "@/assets/run.png";
 
 // Navigation Icons
 import homeIcon from "@/assets/icons/home.svg";
@@ -75,6 +97,7 @@ import medalEleventhIcon from "@/assets/icons/medal-eleventh.svg";
 import streaksBackground from "@/assets/backgrounds/streaks.png";
 import activityBackground from "@/assets/backgrounds/activity.png";
 import communityBackground from "@/assets/backgrounds/community_bg.png";
+import summaryBackground from "@/assets/backgrounds/summary.png";
 
 // School Icons
 import iteLogo from "@/assets/schools/ite.png";
@@ -91,16 +114,40 @@ import tpLogo from "@/assets/schools/temasek-poly.png";
 
 export const IMAGES = {
     enhgageIcon,
+    enhgageFullLogo,
     nhgLogo,
     taglineImg,
     singpassLogo,
+    mascotHappy: olahHappy,
     olah: olahHead,
     lylah: lylahHead,
     ellah: ellahHead,
     olahFull: olahFull,
     lylahFull: lylahFull,
     ellahFull: ellahFull,
+    olahHappy: olahHappy,
+    lylahHappy: lylahHappy,
+    ellahHappy: ellahHappy,
     confetti: "https://images.unsplash.com/photo-1698285439446-2ad560e31a17?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjZWxlYnJhdGlvbiUyMGNvbmZldHRpJTIwYmFja2dyb3VuZHxlbnwxfHx8fDE3Njg0OTg4NjB8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral",
+
+    // Reward Partner Logos
+    rewards: {
+        activesg: activeSgImg,
+        climbcentral: climbingCentralImg,
+        decathlon: decathlonImg,
+        fairprice: fairPriceImg,
+        grab: grabImg,
+        guardian: guardianImg,
+        starbucks: starbucksImg,
+        watsons: watsonsImg,
+        anytimefitness: anytimeFitnessImg,
+        boost: boostImg,
+        euyansang: euYanSangImg,
+        mrbean: mrBeanImg,
+        saladstop: saladStopImg,
+        sgpilates: sgPilatesImg,
+        truefitness: trueFitnessImg,
+    },
 
     // Stat Badges for Lesson Complete Screen
     stats: {
@@ -134,6 +181,7 @@ export const IMAGES = {
         timer: timerIcon,
         flag: flagIcon,
         blueDot: blueDotIcon,
+        run: runIcon,
 
         // Streak Status Icons
         check: checkIcon,
@@ -188,6 +236,7 @@ export const IMAGES = {
         streaks: streaksBackground,
         activity: activityBackground,
         community: communityBackground,
+        summary: summaryBackground,
     },
 };
 

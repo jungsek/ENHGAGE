@@ -66,7 +66,7 @@ export const ActivityCard = ({ wrapped, mascotImage }: ActivityCardProps) => {
                 >
                     <img
                         src={mascotImage}
-                        className="w-56 h-56 object-contain drop-shadow-2xl"
+                        className="w-48 h-48 object-contain"
                         alt="Mascot"
                     />
                 </motion.div>

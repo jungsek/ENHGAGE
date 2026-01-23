@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { CheckCircle2 } from "lucide-react";
 import { ApplyCard as ApplyCardType } from "@/types/LessonTypes";
 import { Button } from "@/components/common/Button";
+import { MascotSpeechBubble } from "./MascotSpeechBubble";
 
 interface ApplyCardProps {
     card: ApplyCardType;
@@ -55,11 +56,9 @@ export const ApplyCard: React.FC<ApplyCardProps> = ({ card, onContinue }) => {
                 </div>
             )}
 
-            {/* Action Text */}
+            {/* Action Text with Mascot Speech Bubble */}
             <div className="flex-1">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                    {card.text}
-                </p>
+                <MascotSpeechBubble text={card.text} />
             </div>
 
             {/* CTA Button */}

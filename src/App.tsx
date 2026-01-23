@@ -11,6 +11,7 @@ import { MapScreen } from "@/screens/MapScreen";
 import { SocialScreen } from "@/screens/SocialScreen";
 import { RewardsScreen } from "@/screens/RewardsScreen";
 import { ProfileScreen } from "@/screens/ProfileScreen";
+import { ProgrammeDetailScreen } from "@/screens/ProgrammeDetailScreen";
 
 export default function App() {
   const { hasCompletedOnboarding } = useAppStore();
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="home" element={<HomeScreen />} />
             <Route path="learn" element={<LearningScreen />} />
             <Route path="map" element={<MapScreen />} />
+            <Route path="map/programme/:id" element={<ProgrammeDetailScreen />} />
             <Route path="social" element={<SocialScreen />} />
             <Route path="rewards" element={<RewardsScreen />} />
             <Route path="profile" element={<ProfileScreen />} />

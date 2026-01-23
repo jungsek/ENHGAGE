@@ -1,4 +1,3 @@
-import React from "react";
 import { cn } from "@/components/ui/utils";
 import { IMAGES } from "@/constants/assets";
 
@@ -27,13 +26,13 @@ export const EnhgageLogo = ({
                 )}
             />
         )}
-        <h1
+        <img
+            src={IMAGES.enhgageFullLogo}
+            alt="ENHGAGE Logo"
             className={cn(
-                "font-feather text-[#00897B] tracking-tighter leading-none",
-                size === "large" ? "text-7xl" : "text-xl",
+                "object-contain",
+                size === "large" ? "h-16" : "h-10",
             )}
-        >
-            E<span className="text-[#1565C0]">NHG</span>AGE
-        </h1>
+        />
     </div>
 );

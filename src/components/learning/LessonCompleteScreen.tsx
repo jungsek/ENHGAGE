@@ -13,7 +13,7 @@ interface LessonCompleteScreenProps {
 }
 
 export const LessonCompleteScreen: React.FC<LessonCompleteScreenProps> = ({ result, onClaim }) => {
-    const { mascotFull, mascotName } = useMascot();
+    const { mascotHappy, mascotName } = useMascot();
 
     useEffect(() => {
         confetti({
@@ -47,7 +47,7 @@ export const LessonCompleteScreen: React.FC<LessonCompleteScreenProps> = ({ resu
 
                         {/* Human (Olah) - Right */}
                         <motion.img
-                            src={mascotFull}
+                            src={mascotHappy}
                             alt={mascotName}
                             animate={{
                                 y: [0, -20, 0],

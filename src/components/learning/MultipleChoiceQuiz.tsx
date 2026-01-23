@@ -9,6 +9,7 @@ import { FeedbackPanel } from "./FeedbackPanel";
 import { Button } from "@/components/common/Button";
 import { Card } from "@/components/common/Card";
 import { cn } from "@/components/ui/utils";
+import { MascotSpeechBubble } from "./MascotSpeechBubble";
 
 interface MultipleChoiceQuizProps {
     card: CheckCard;
@@ -70,10 +71,8 @@ export const MultipleChoiceQuiz: React.FC<MultipleChoiceQuizProps> = ({
                 </span>
             </div>
 
-            {/* Question */}
-            <h2 className="text-xl font-bold text-gray-800 mb-6">
-                {card.question}
-            </h2>
+            {/* Question with Mascot Speech Bubble */}
+            <MascotSpeechBubble text={card.question} className="mb-6" />
 
             <div className="grid grid-cols-2 gap-3">
                 {card.options.map((option, index) => (

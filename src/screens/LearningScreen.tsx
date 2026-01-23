@@ -5,9 +5,9 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
 import { AnimatePresence, motion } from "motion/react";
-import { BookOpen, ChevronRight, Clock, Zap } from "lucide-react";
+import { BookOpen, ChevronRight, Clock, Zap, Award } from "lucide-react";
 import { useLearningStore } from "@/store/useLearningStore";
-import { getLessonsByPillar } from "@/constants/lessonData";
+import { getLessonsByPillar, ALL_LESSONS } from "@/constants/lessonData";
 import { PILLAR_CONFIG, ALL_PILLARS } from "@/constants/data";
 import { Lesson, LessonResult, CheckCard as CheckCardType, LessonPillar } from "@/types/LessonTypes";
 
@@ -20,9 +20,12 @@ import { LearnCard } from "@/components/learning/LearnCard";
 import { MultipleChoiceQuiz } from "@/components/learning/MultipleChoiceQuiz";
 import { ApplyCard } from "@/components/learning/ApplyCard";
 import { ConnectCard } from "@/components/learning/ConnectCard";
+import { PillarCertifiedModal } from "@/components/learning/PillarCertifiedModal";
+import { CertificateShareModal } from "@/components/learning/CertificateShareModal";
 import { AppHeader } from "@/components/common/AppHeader";
 import { useAppStore } from "@/store/useAppStore";
 import { useMascot } from "@/hooks/useMascot";
+import { MascotSpeechBubble } from "@/components/learning/MascotSpeechBubble";
 
 export const LearningScreen: React.FC = () => {
     const {
@@ -35,6 +38,10 @@ export const LearningScreen: React.FC = () => {
         completeLesson,
         exitLesson,
         completedLessons,
+        newlyCertifiedPillar,
+        clearNewlyCertifiedPillar,
+        isPillarCertified,
+        getPillarCertificate,
     } = useLearningStore();
 
     const { profile, addPoints } = useAppStore();
@@ -66,9 +73,30 @@ export const LearningScreen: React.FC = () => {
         return () => document.body.classList.remove("hide-navbar");
     }, [isLessonActive]);
 
+    // Check for deep link to lesson
+    useEffect(() => {
+        const searchParams = new URLSearchParams(window.location.search);
+        const lessonId = searchParams.get("lessonId");
+
+        if (lessonId && !isLessonActive) {
+            const lesson = ALL_LESSONS.find((l) => l.id === lessonId);
+            if (lesson) {
+                // Clear the param so it doesn't persist if they navigate back
+                window.history.replaceState({}, '', '/app/learn');
+                startLesson(lesson);
+            }
+        }
+    }, []);
+
     const [lessonResult, setLessonResult] = useState<LessonResult | null>(null);
     const [showCompleteScreen, setShowCompleteScreen] = useState(false);
     const [showQuestScreen, setShowQuestScreen] = useState(false);
+    
+    // Certification modal states
+    const [showCertifiedModal, setShowCertifiedModal] = useState(false);
+    const [certifiedPillarToShow, setCertifiedPillarToShow] = useState<LessonPillar | null>(null);
+    const [showShareModal, setShowShareModal] = useState(false);
+    const [sharePillarId, setSharePillarId] = useState<LessonPillar | null>(null);
 
     // Handle lesson start
     const handleStartLesson = (lesson: Lesson) => {
@@ -109,6 +137,39 @@ export const LearningScreen: React.FC = () => {
         exitLesson();
         setLessonResult(null);
         setShowQuestScreen(false);
+        
+        // Check if there's a newly certified pillar to celebrate
+        if (newlyCertifiedPillar) {
+            setCertifiedPillarToShow(newlyCertifiedPillar);
+            setShowCertifiedModal(true);
+        }
+    };
+
+    // Handle certified modal actions
+    const handleCertifiedShareToLinkedIn = () => {
+        if (certifiedPillarToShow) {
+            setSharePillarId(certifiedPillarToShow);
+            setShowCertifiedModal(false);
+            setShowShareModal(true);
+            clearNewlyCertifiedPillar();
+        }
+    };
+
+    const handleCertifiedDismiss = () => {
+        setShowCertifiedModal(false);
+        setCertifiedPillarToShow(null);
+        clearNewlyCertifiedPillar();
+    };
+
+    const handleShareModalClose = () => {
+        setShowShareModal(false);
+        setSharePillarId(null);
+    };
+
+    // Handle clicking on a certified pillar badge to share
+    const handleCertifiedBadgeClick = (pillarId: LessonPillar) => {
+        setSharePillarId(pillarId);
+        setShowShareModal(true);
     };
 
     // Render current card based on type
@@ -146,6 +207,17 @@ export const LearningScreen: React.FC = () => {
         }
     };
 
+
+    // Show pillar certification modal
+    if (showCertifiedModal && certifiedPillarToShow) {
+        return (
+            <PillarCertifiedModal
+                pillarId={certifiedPillarToShow}
+                onShareToLinkedIn={handleCertifiedShareToLinkedIn}
+                onDismiss={handleCertifiedDismiss}
+            />
+        );
+    }
 
     // Show quest screen after claiming XP
     if (showQuestScreen) {
@@ -200,40 +272,36 @@ export const LearningScreen: React.FC = () => {
 
     // Show lesson list (default view)
     return (
-        <div className="flex flex-col min-h-screen bg-gray-50 pb-24">
+        <>
+            {/* Share Certificate Modal - renders on top of content */}
+            {showShareModal && sharePillarId && (
+                <CertificateShareModal
+                    isOpen={showShareModal}
+                    onClose={handleShareModalClose}
+                    pillarId={sharePillarId}
+                    certifiedAt={getPillarCertificate(sharePillarId)?.certifiedAt}
+                />
+            )}
+            
+            <div className="flex flex-col min-h-screen bg-gray-50 pb-24">
             {/* Header */}
             <AppHeader
                 gems={profile.points}
                 streak={profile.streak}
                 onPointsClick={() => navigate("/app/rewards")}
             />
-
-            {/* Page Title / Mascot Guide */}
-            <div className="bg-white px-6 py-6 border-b border-gray-100 flex items-end gap-4">
-                {/* Mascot */}
-                <div className="relative shrink-0">
-                    <img
-                        src={mascotFull}
-                        alt="Mascot"
-                        className="w-20 h-auto object-contain"
-                    />
-                </div>
-
-                {/* Speech Bubble */}
-                <div className="relative bg-white border-2 border-gray-200 rounded-2xl p-4 mb-8 flex-1">
-                    <p className="text-gray-800 font-bold text-sm">
-                        Pick a lesson to start!
-                    </p>
-
-                    {/* Speech Bubble Tail */}
-                    <div className="absolute -left-2 bottom-6 w-4 h-4 bg-white border-l-2 border-b-2 border-gray-200 transform rotate-45 z-10"></div>
-                </div>
+            {/* Spacer at top for breathing room */}
+            <div className="h-10" />
+            {/* Content Text with Mascot Speech Bubble */}
+            <div className="">
+                <MascotSpeechBubble text="Pick a lesson to start learning! Complete the lesson to earn points and gems, and unlock more lessons." className="px-6 mb-6" />
             </div>
 
             {/* Lessons List - Grouped by Pillar */}
             <div className="p-6 space-y-6">
                 {groupedLessons.map((group) => {
                     const isPreferred = profile.interests.includes(group.pillar.id);
+                    const isCertified = isPillarCertified(group.pillar.id);
 
                     return (
                         <div key={group.pillar.id} className="space-y-3">
@@ -244,7 +312,7 @@ export const LearningScreen: React.FC = () => {
                                     style={{ backgroundColor: group.pillar.color }}
                                 />
                                 <div className="flex-1">
-                                    <div className="flex items-center gap-2">
+                                    <div className="flex items-center gap-2 flex-wrap">
                                         <h2
                                             className="text-sm font-bold tracking-wide"
                                             style={{ color: group.pillar.color }}
@@ -261,6 +329,15 @@ export const LearningScreen: React.FC = () => {
                                             >
                                                 YOUR PICK
                                             </span>
+                                        )}
+                                        {isCertified && (
+                                            <button
+                                                onClick={() => handleCertifiedBadgeClick(group.pillar.id)}
+                                                className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFC800] text-white hover:bg-[#FFD633] transition-colors"
+                                            >
+                                                <Award size={10} />
+                                                CERTIFIED
+                                            </button>
                                         )}
                                     </div>
                                     <p className="text-xs text-gray-400 mt-0.5">
@@ -297,8 +374,11 @@ export const LearningScreen: React.FC = () => {
                         </div>
                     );
                 })}
+                {/* Spacer to prevent content being cut off by bottom navbar */}
+                <div className="h-24" />
             </div>
         </div>
+        </>
     );
 };
 

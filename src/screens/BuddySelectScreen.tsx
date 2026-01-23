@@ -36,7 +36,7 @@ export const BuddySelectScreen = () => {
                             updateProfile("buddy", "olah");
                             updateProfile("buddyName", "Olah");
                         }}
-                        className="flex flex-col items-center"
+                        className="flex flex-col items-center p-6"
                     >
                         <img
                             src={IMAGES.olah}
@@ -56,7 +56,7 @@ export const BuddySelectScreen = () => {
                             updateProfile("buddy", "lylah");
                             updateProfile("buddyName", "Lylah");
                         }}
-                        className="flex flex-col items-center"
+                        className="flex flex-col items-center p-6"
                     >
                         <img
                             src={IMAGES.lylah}
@@ -76,7 +76,7 @@ export const BuddySelectScreen = () => {
                             updateProfile("buddy", "ellah");
                             updateProfile("buddyName", "Ellah");
                         }}
-                        className="flex flex-col items-center col-span-2 w-1/2 mx-auto"
+                        className="flex flex-col items-center col-span-2 w-1/2 mx-auto p-6"
                     >
                         <img
                             src={IMAGES.ellah}

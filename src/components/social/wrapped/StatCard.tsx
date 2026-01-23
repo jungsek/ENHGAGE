@@ -14,7 +14,7 @@ export const StatCard = ({ icon, iconBg, value, label, valueColor = "#4B4B4B", d
         initial={{ scale: 0.8, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ delay, type: "spring", stiffness: 200 }}
-        className="bg-white rounded-2xl p-4 shadow-sm border border-gray-100 flex items-center gap-3"
+        className="bg-white rounded-2xl p-4 border-2 border-gray-200 border-b-4 flex items-center gap-3 h-full"
     >
         <div
             className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"

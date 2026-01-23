@@ -20,12 +20,19 @@ export type UserProfile = {
     buddyName: string;
     referralSource: string;
     points: number;
+    // Leveling
+    level: number;
+    currentXP: number;
+    maxXP: number;
     streak: {
         current: number;
         status: "cold" | "warm" | "hot";
         freezes: number;
         history: boolean[]; // Last 7 days, true = completed
     };
+    completedQuests: string[];
+    dailyRewardClaimed?: boolean;
+    lastActiveDate?: string;
 };
 
 // Leaderboard Types
@@ -70,4 +77,26 @@ export interface WrappedData {
     highFivesReceived: number;
     schoolContribution: number;
     learningMinutes: number;
+}
+
+// Quest Types
+export interface Quest {
+    id: string;
+    title: string;
+    subtitle: string;
+    xp: number;
+    icon: 'check' | 'zap' | 'heart' | 'star' | 'book' | 'water' | 'moon' | 'reading' | 'brain';
+    type: 'completed' | 'progress' | 'simple' | 'bonus';
+    progress?: {
+        current: number;
+        total: number;
+        unit?: string;
+    };
+    colorTheme: {
+        bg: string;
+        border: string;
+        text: string;
+        iconBg?: string;
+    };
+    uiType?: 'standard' | 'progress-bar' | 'mood-selector' | 'bonus-card';
 }

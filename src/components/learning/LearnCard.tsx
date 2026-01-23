@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { Sparkles } from "lucide-react";
 import { LearnCard as LearnCardType } from "@/types/LessonTypes";
 import { Button } from "@/components/common/Button";
+import { MascotSpeechBubble } from "./MascotSpeechBubble";
 
 interface LearnCardProps {
     card: LearnCardType;
@@ -50,11 +51,9 @@ export const LearnCard: React.FC<LearnCardProps> = ({ card, onContinue }) => {
                 </div>
             )}
 
-            {/* Content Text */}
+            {/* Content Text with Mascot Speech Bubble */}
             <div className="flex-1">
-                <p className="text-lg text-gray-700 leading-relaxed">
-                    {card.text}
-                </p>
+                <MascotSpeechBubble text={card.text} />
             </div>
 
             {/* Continue Button Footer */}

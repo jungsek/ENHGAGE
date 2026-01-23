@@ -6,3 +6,5 @@ export { MultipleChoiceQuiz } from "./MultipleChoiceQuiz";
 export { FeedbackPanel } from "./FeedbackPanel";
 export { ApplyCard } from "./ApplyCard";
 export { ConnectCard } from "./ConnectCard";
+export { PillarCertifiedModal } from "./PillarCertifiedModal";
+export { CertificateShareModal } from "./CertificateShareModal";

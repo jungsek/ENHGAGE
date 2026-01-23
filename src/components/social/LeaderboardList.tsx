@@ -1,7 +1,9 @@
 import { MOCK_INSTITUTIONS } from "@/constants/socialData";
 import { LeaderboardRow } from "./LeaderboardRow";
+import { useAppStore } from "@/store/useAppStore";
 
 export const LeaderboardList = () => {
+    const { profile } = useAppStore();
     // Show all institutions in one list
     const allInstitutions = MOCK_INSTITUTIONS;
 
@@ -12,7 +14,7 @@ export const LeaderboardList = () => {
                     <LeaderboardRow
                         key={institution.shortName}
                         institution={institution}
-                        isUserSchool={institution.shortName === "NP"}
+                        isUserSchool={institution.shortName === profile.institution}
                         index={index}
                     />
                 ))}

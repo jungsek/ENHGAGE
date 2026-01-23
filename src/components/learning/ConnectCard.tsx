@@ -6,6 +6,7 @@ import { motion } from "motion/react";
 import { ExternalLink } from "lucide-react";
 import { ConnectCard as ConnectCardType } from "@/types/LessonTypes";
 import { Button } from "@/components/common/Button";
+import { MascotSpeechBubble } from "./MascotSpeechBubble";
 
 interface ConnectCardProps {
     card: ConnectCardType;
@@ -42,14 +43,12 @@ export const ConnectCard: React.FC<ConnectCardProps> = ({ card, onComplete }) =>
                 Want to learn more?
             </h2>
 
-            {/* Programme Card */}
-            <div className="bg-gradient-to-r from-[#E0F2F1] to-[#B2DFDB] rounded-2xl p-6 mb-6">
-                <h3 className="text-lg font-bold text-[#00695C] mb-2">
+            {/* Programme Card with Mascot Speech Bubble */}
+            <div className="bg-gradient-to-r from-[#E0F2F1] to-[#B2DFDB] rounded-2xl p-4 mb-6">
+                <h3 className="text-lg font-bold text-[#00695C] mb-3">
                     {card.programmeName}
                 </h3>
-                <p className="text-gray-700 text-sm">
-                    {card.text}
-                </p>
+                <MascotSpeechBubble text={card.text} />
             </div>
 
             {/* Illustration (if available) */}

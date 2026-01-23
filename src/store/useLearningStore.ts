@@ -1,6 +1,13 @@
 // Learning Store - Manages lesson state for ENHGAGE Learning feature
 import { create } from 'zustand';
-import { Lesson, LessonProgress, LessonResult } from '@/types/LessonTypes';
+import { Lesson, LessonProgress, LessonResult, LessonPillar } from '@/types/LessonTypes';
+import { getLessonsByPillar } from '@/constants/lessonData';
+
+// Certificate metadata for certified pillars
+export interface PillarCertificate {
+    pillarId: LessonPillar;
+    certifiedAt: number; // timestamp
+}
 
 interface LearningState {
     // Current Lesson State
@@ -13,6 +20,10 @@ interface LearningState {
     completedLessons: string[];
     lessonResults: LessonResult[];
 
+    // Certification State
+    certifiedPillars: PillarCertificate[];
+    newlyCertifiedPillar: LessonPillar | null; // For triggering celebration modal
+
     // Actions
     startLesson: (lesson: Lesson) => void;
     nextCard: () => void;
@@ -20,6 +31,9 @@ interface LearningState {
     submitAnswer: (cardId: string, optionId: string, isCorrect: boolean) => void;
     completeLesson: () => LessonResult | null;
     exitLesson: () => void;
+    clearNewlyCertifiedPillar: () => void;
+    isPillarCertified: (pillarId: LessonPillar) => boolean;
+    getPillarCertificate: (pillarId: LessonPillar) => PillarCertificate | undefined;
 }
 
 export const useLearningStore = create<LearningState>((set, get) => ({
@@ -30,6 +44,8 @@ export const useLearningStore = create<LearningState>((set, get) => ({
     totalXP: 0,
     completedLessons: [],
     lessonResults: [],
+    certifiedPillars: [],
+    newlyCertifiedPillar: null,
 
     // Start a new lesson
     startLesson: (lesson: Lesson) => {
@@ -97,7 +113,7 @@ export const useLearningStore = create<LearningState>((set, get) => ({
 
     // Complete lesson and calculate results
     completeLesson: () => {
-        const { lessonProgress, currentLesson, totalXP, completedLessons, lessonResults } = get();
+        const { lessonProgress, currentLesson, totalXP, completedLessons, lessonResults, certifiedPillars } = get();
         if (!lessonProgress || !currentLesson) return null;
 
         // Calculate time taken
@@ -126,15 +142,40 @@ export const useLearningStore = create<LearningState>((set, get) => ({
             totalQuestions,
         };
 
+        // New completed lessons list (including this one)
+        const newCompletedLessons = [...completedLessons, currentLesson.id];
+
+        // Check if this completion results in a pillar certification
+        const pillarId = currentLesson.pillar;
+        const pillarLessons = getLessonsByPillar(pillarId);
+        const completedPillarLessons = pillarLessons.filter(
+            lesson => newCompletedLessons.includes(lesson.id)
+        );
+        
+        // Check if pillar is now fully completed and not already certified
+        const isAlreadyCertified = certifiedPillars.some(cert => cert.pillarId === pillarId);
+        const isPillarNowComplete = completedPillarLessons.length === pillarLessons.length;
+        
+        let newCertifiedPillars = certifiedPillars;
+        let newlyCertified: LessonPillar | null = null;
+
+        if (isPillarNowComplete && !isAlreadyCertified) {
+            newCertifiedPillars = [
+                ...certifiedPillars,
+                { pillarId, certifiedAt: Date.now() }
+            ];
+            newlyCertified = pillarId;
+        }
+
         // Update state
         set({
             totalXP: totalXP + lessonTotalXP,
-            completedLessons: [...completedLessons, currentLesson.id],
+            completedLessons: newCompletedLessons,
             lessonResults: [...lessonResults, result],
+            certifiedPillars: newCertifiedPillars,
+            newlyCertifiedPillar: newlyCertified,
             isLessonActive: false,
         });
-
-
 
         return result;
     },
@@ -146,5 +187,20 @@ export const useLearningStore = create<LearningState>((set, get) => ({
             lessonProgress: null,
             isLessonActive: false,
         });
+    },
+
+    // Clear the newly certified pillar (after showing celebration modal)
+    clearNewlyCertifiedPillar: () => {
+        set({ newlyCertifiedPillar: null });
+    },
+
+    // Check if a pillar is certified
+    isPillarCertified: (pillarId: LessonPillar) => {
+        return get().certifiedPillars.some(cert => cert.pillarId === pillarId);
+    },
+
+    // Get certificate data for a pillar
+    getPillarCertificate: (pillarId: LessonPillar) => {
+        return get().certifiedPillars.find(cert => cert.pillarId === pillarId);
     },
 }));
