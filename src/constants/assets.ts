@@ -12,6 +12,7 @@ import enhgageIcon from "@/assets/brand/enhgage_icon.png";
 import nhgLogo from "@/assets/brand/nhg_logo.png";
 import taglineImg from "@/assets/brand/tagline.png";
 import enhgageFullLogo from "@/assets/logo.png";
+import appleHealthImg from "@/assets/apple_health.png";
 
 // Stat Badge Images
 import statXpBadge from "@/assets/stats/stat-xp.png";
@@ -111,10 +112,12 @@ import smuLogo from "@/assets/schools/smu.png";
 import sussLogo from "@/assets/schools/suss.png";
 import sutdLogo from "@/assets/schools/sutd.png";
 import tpLogo from "@/assets/schools/temasek-poly.png";
+import spLogo from "@/assets/schools/singapore-poly.png";
 
 export const IMAGES = {
     enhgageIcon,
     enhgageFullLogo,
+    appleHealth: appleHealthImg,
     nhgLogo,
     taglineImg,
     singpassLogo,
@@ -221,6 +224,7 @@ export const IMAGES = {
         suss: sussLogo,
         sutd: sutdLogo,
         tp: tpLogo,
+        sp: spLogo,
     },
 
     // Quest Images

@@ -217,6 +217,8 @@ export const ProgrammeDetailScreen: React.FC = () => {
                 >
                     {isBooked ? "Booked" : "Book Now"}
                 </Button>
+
+                <div className='h-24'></div>
             </div>
         </div>
     );

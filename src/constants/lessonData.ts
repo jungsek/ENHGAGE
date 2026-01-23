@@ -186,12 +186,12 @@ export const MOVING_FREE_LESSON: Lesson = {
             text: "Want to explore more? Moving Free runs 5-session workshops in community centres across Singapore.",
             ctaText: "Find Sessions Near Me",
             programmeName: "Moving Free",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/community/workshop-activities/Move-Exercise4",
         },
     ],
     programmeLink: {
         name: "Moving Free",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/community/workshop-activities/Move-Exercise4",
     },
 };
 
@@ -249,12 +249,12 @@ export const MINDSET_LESSON: Lesson = {
             text: "The mindSET! Series helps build these skills in schools and communities through NHG's Healthier Minds programme.",
             ctaText: "Explore Healthier Minds",
             programmeName: "mindSET! Series",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "mindSET! Series",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -322,12 +322,12 @@ export const WALKING_FOODPEDIA_LESSON: Lesson = {
             text: "Want to learn more in person? Walking Foodpedia takes you on guided tours of hawker centres with a Health Coach!",
             ctaText: "Join Walking Foodpedia",
             programmeName: "Walking Foodpedia",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Walking Foodpedia",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -392,12 +392,12 @@ export const SIEW_DAI_LESSON: Lesson = {
             text: "Make It Siew Dai workshops teach practical skills to prevent diabetes through daily food choices.",
             ctaText: "Learn More",
             programmeName: "Make It Siew Dai",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Make It Siew Dai",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -454,12 +454,12 @@ export const SMILE_BRIGHT_LESSON: Lesson = {
             text: "Eat Right, Smile Bright workshops combine nutrition and oral health tips with dietitians and dental therapists.",
             ctaText: "Find a Workshop",
             programmeName: "Eat Right, Smile Bright",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Eat Right, Smile Bright",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -522,12 +522,12 @@ export const KPOPX_LESSON: Lesson = {
             text: "KpopX Fitness classes run weekly at Woodlands Health and community centres across Singapore. Join the party!",
             ctaText: "Find Classes Near Me",
             programmeName: "KpopX Fitness",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "KpopX Fitness",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -591,12 +591,12 @@ export const RESISTANCE_BAND_LESSON: Lesson = {
             text: "Learn proper form with Resistance Band Training workshops through Health Kampung.",
             ctaText: "Find a Workshop",
             programmeName: "Resistance Band Training",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Resistance Band Training",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -655,12 +655,12 @@ export const MOBILITY_LESSON: Lesson = {
             text: "NHG's Mobility Workshops with physiotherapists teach you a complete routine for lifelong movement freedom.",
             ctaText: "Join a Workshop",
             programmeName: "Mobility Workshops",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Mobility Workshops",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -728,12 +728,12 @@ export const DIABETES_LESSON: Lesson = {
             text: "NHG's Diabetes Management workshops teach you to monitor blood sugar and make sustainable lifestyle changes.",
             ctaText: "Learn More",
             programmeName: "CDM - Diabetes",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "CDM - Diabetes",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -797,12 +797,12 @@ export const CHOLESTEROL_BP_LESSON: Lesson = {
             text: "Learn to monitor your own BP and understand cholesterol at NHG's CDM workshops.",
             ctaText: "Find Workshops",
             programmeName: "CDM - Cholesterol & BP",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "CDM - Cholesterol & BP",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -877,12 +877,12 @@ export const SEED_LESSON: Lesson = {
             text: "The SEED Framework is part of GrowWell SG—helping young Singaporeans build healthy habits early.",
             ctaText: "Explore GrowWell SG",
             programmeName: "SEED Framework",
-            deepLink: "https://growwell.sg",
+            deepLink: "https://www.healthhub.sg/programmes/parent-hub/grow-well-sg",
         },
     ],
     programmeLink: {
         name: "SEED Framework",
-        deepLink: "https://growwell.sg",
+        deepLink: "https://www.healthhub.sg/programmes/parent-hub/grow-well-sg",
     },
 };
 
@@ -950,12 +950,12 @@ export const WHEELCHAIR_LESSON: Lesson = {
             text: "NHG's Wheelchair Handling workshops provide hands-on training with occupational therapists.",
             ctaText: "Register for Training",
             programmeName: "Wheelchair Handling",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Wheelchair Handling",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -1019,12 +1019,12 @@ export const SAFER_HOME_LESSON: Lesson = {
             text: "Create a Safer Home workshops include a complete home safety checklist and info on modification resources.",
             ctaText: "Get the Checklist",
             programmeName: "Create a Safer Home",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Create a Safer Home",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -1088,12 +1088,12 @@ export const MEDICATION_LESSON: Lesson = {
             text: "NHG's Medication Habits workshops are led by pharmacists who teach hands-on pillbox packing and label reading.",
             ctaText: "Find a Workshop",
             programmeName: "Medication Habits",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "Medication Habits",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -1156,12 +1156,12 @@ export const HEALTHHUB_BUDDY_LESSON: Lesson = {
             text: "Join My HealthHub Buddy through Youth Corps Singapore and NHG Polyclinics—earn volunteer hours while making a real difference!",
             ctaText: "Sign Up to Volunteer",
             programmeName: "My HealthHub Buddy",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "My HealthHub Buddy",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 
@@ -1220,12 +1220,12 @@ export const YUMCHA_LESSON: Lesson = {
             text: "yumCHA Sessions at the Centre for Health Activation train the next generation of community health leaders. Interested?",
             ctaText: "Learn About yumCHA",
             programmeName: "yumCHA Sessions",
-            deepLink: "https://healthkampung.sg",
+            deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
         },
     ],
     programmeLink: {
         name: "yumCHA Sessions",
-        deepLink: "https://healthkampung.sg",
+        deepLink: "https://www.nhghealth.com.sg/residents/your-community-of-care",
     },
 };
 

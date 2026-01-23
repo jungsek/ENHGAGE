@@ -16,7 +16,7 @@ export const NotificationsScreen = () => {
                 >
                     <ChevronLeft size={28} strokeWidth={3} />
                 </button>
-                <ProgressBar current={4} total={5} />
+                <ProgressBar current={4} total={6} />
             </div>
 
             <div className="flex-1 px-6 flex flex-col items-center pt-8 text-center">
@@ -73,18 +73,19 @@ export const NotificationsScreen = () => {
                 <div className="w-full mt-auto mb-8">
                     <Button
                         variant="primary"
-                        onClick={() => setStep("referral")}
+                        onClick={() => setStep("health")}
                         fullWidth
                     >
                         ENABLE NOTIFICATIONS
                     </Button>
                     <button
-                        onClick={() => setStep("referral")}
+                        onClick={() => setStep("health")}
                         className="mt-6 block w-full text-[#00897B] font-extrabold text-sm uppercase tracking-widest"
                     >
                         Maybe Later
                     </button>
                 </div>
+                <div className="h-20"></div>
             </div>
         </div>
     );

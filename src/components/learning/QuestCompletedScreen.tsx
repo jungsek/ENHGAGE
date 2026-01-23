@@ -42,6 +42,7 @@ export const QuestCompletedScreen: React.FC<QuestCompletedScreenProps> = ({
 
     return (
         <div className="fixed inset-0 z-[110] flex flex-col bg-white overflow-hidden">
+            <div className="h-10"></div>
             {/* Header */}
             <div className="flex items-center justify-between px-4 py-3">
                 {/* Close Button */}

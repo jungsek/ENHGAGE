@@ -59,6 +59,8 @@ export const SummaryCard = ({ wrapped, mascotImage, onShare }: SummaryCardProps)
             {/* Main Content */}
             <div className="flex-1 flex flex-col items-center px-6 justify-center">
 
+                <div className='h-24'></div>
+
                 {/* 2024 Visual */}
                 <div className="relative w-full flex flex-col items-center justify-center mt-20 mb-6">
                     <div className="relative">
@@ -139,6 +141,7 @@ export const SummaryCard = ({ wrapped, mascotImage, onShare }: SummaryCardProps)
                         share
                     </Button>
                 </motion.div>
+                <div className='h-24'></div>
             </div>
         </div>
     );

@@ -13,9 +13,9 @@ export const MascotSpeechBubble: React.FC<MascotSpeechBubbleProps> = ({ text, cl
     const { mascotFull } = useMascot();
 
     return (
-        <div className={`flex items-start gap-3 ${className}`}>
-            {/* Mascot */}
-            <div className="relative shrink-0 w-24 h-24">
+        <div className={`flex items-end gap-3 ${className}`}>
+            {/* Mascot - compact size */}
+            <div className="relative shrink-0 w-16 h-16">
                 <img
                     src={mascotFull}
                     alt="Mascot"
@@ -23,13 +23,14 @@ export const MascotSpeechBubble: React.FC<MascotSpeechBubbleProps> = ({ text, cl
                 />
             </div>
 
-            {/* Speech Bubble */}
-            <div className="relative flex-1 bg-white border-2 border-gray-200 rounded-2xl px-4 py-3 shadow-sm font-din">
-                <p className="font-bold text-gray-700 text-base leading-relaxed whitespace-pre-line">
+            {/* Speech Bubble - takes remaining width */}
+            <div className="relative flex-1 min-w-0 bg-white border-2 border-gray-200 rounded-2xl px-4 py-3 shadow-sm">
+                <p className="text-gray-700 text-sm leading-relaxed font-medium">
                     {text}
                 </p>
-                {/* Arrow pointing to mascot */}
-                <div className="absolute top-4 -left-2 w-4 h-4 bg-white border-l-2 border-b-2 border-gray-200 transform rotate-45"></div>
+                {/* Tail pointing to mascot - two layers for clean border */}
+                <div className="absolute top-1/2 -translate-y-1/2 -left-[9px] w-3 h-3 bg-gray-200 rotate-45" />
+                <div className="absolute top-1/2 -translate-y-1/2 -left-[6px] w-3 h-3 bg-white rotate-45" />
             </div>
         </div>
     );

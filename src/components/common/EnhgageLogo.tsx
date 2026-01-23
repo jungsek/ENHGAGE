@@ -12,7 +12,7 @@ export const EnhgageLogo = ({
 }) => (
     <div
         className={cn(
-            "flex flex-col items-center justify-center gap-4",
+            "flex flex-col items-center justify-center gap-2",
             className,
         )}
     >
@@ -31,7 +31,7 @@ export const EnhgageLogo = ({
             alt="ENHGAGE Logo"
             className={cn(
                 "object-contain",
-                size === "large" ? "h-16" : "h-10",
+                size === "large" ? "h-16 -mt-6" : "h-6 -mt-1",
             )}
         />
     </div>

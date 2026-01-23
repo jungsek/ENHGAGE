@@ -9,11 +9,11 @@ export const WelcomeScreen = () => {
 
     return (
         <div className="min-h-screen flex flex-col p-6 items-center justify-center bg-white max-w-md mx-auto">
-            <div className="flex-1 flex flex-col items-center justify-center gap-8 w-full">
+            <div className="flex-1 flex flex-col items-center justify-center gap-6 w-full">
                 <EnhgageLogo size="large" />
 
                 {/* Collaboration Info Section */}
-                <div className="flex flex-col items-center justify-center gap-6 w-full animate-in fade-in zoom-in duration-700">
+                <div className="flex flex-col items-center justify-center gap-4 w-full animate-in fade-in zoom-in duration-700">
                     <span className="text-gray-400 font-din font-bold text-xs uppercase tracking-widest">
                         in collaboration with
                     </span>
@@ -31,7 +31,7 @@ export const WelcomeScreen = () => {
                     </p>
                 </div>
             </div>
-            <div className="w-full space-y-3 pb-8">
+            <div className="w-full space-y-3 pt-6 pb-8">
                 <Button
                     variant="primary"
                     onClick={() => setStep("signin")}
@@ -47,6 +47,7 @@ export const WelcomeScreen = () => {
                     I ALREADY HAVE AN ACCOUNT
                 </Button>
             </div>
+            <div className="h-10"></div>
         </div>
     );
 };

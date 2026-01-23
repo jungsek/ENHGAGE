@@ -9,6 +9,7 @@ import { InterestsScreen } from "@/screens/InterestsScreen";
 import { BuddySelectScreen } from "@/screens/BuddySelectScreen";
 import { WidgetScreen } from "@/screens/WidgetScreen";
 import { NotificationsScreen } from "@/screens/NotificationsScreen";
+import { ConnectHealthScreen } from "@/screens/ConnectHealthScreen";
 import { ReferralScreen } from "@/screens/ReferralScreen";
 import { CompleteScreen } from "@/screens/CompleteScreen";
 import { SplashScreen } from "@/screens/SplashScreen";
@@ -46,6 +47,7 @@ export const OnboardingFlow: React.FC = () => {
                 {step === "buddy" && <BuddySelectScreen key="buddy" />}
                 {step === "widget" && <WidgetScreen key="widget" />}
                 {step === "notifications" && <NotificationsScreen key="notifications" />}
+                {step === "health" && <ConnectHealthScreen key="health" />}
                 {step === "referral" && <ReferralScreen key="referral" />}
                 {step === "complete" && <CompleteScreen key="complete" />}
             </AnimatePresence>

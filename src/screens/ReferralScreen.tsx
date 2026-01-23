@@ -12,12 +12,12 @@ export const ReferralScreen = () => {
         <div className="min-h-screen flex flex-col bg-white max-w-md mx-auto">
             <div className="p-4 flex items-center gap-4">
                 <button
-                    onClick={() => setStep("notifications")}
+                    onClick={() => setStep("health")}
                     className="text-gray-400"
                 >
                     <ChevronLeft size={28} strokeWidth={3} />
                 </button>
-                <ProgressBar current={5} total={5} />
+                <ProgressBar current={6} total={6} />
             </div>
 
             <div className="flex-1 px-6 pt-4">

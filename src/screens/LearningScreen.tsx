@@ -246,6 +246,7 @@ export const LearningScreen: React.FC = () => {
     if (isLessonActive && currentLesson && lessonProgress) {
         return createPortal(
             <div className="fixed inset-0 z-[100] flex flex-col bg-white overflow-y-auto overscroll-none touch-pan-y">
+                <div className='h-12'></div>
                 {/* Header with progress */}
                 <LessonHeader
                     currentCard={lessonProgress.currentCardIndex + 1}
@@ -294,7 +295,7 @@ export const LearningScreen: React.FC = () => {
                 <div className="h-10" />
                 {/* Content Text with Mascot Speech Bubble */}
                 <div className="">
-                    <MascotSpeechBubble text="Pick a lesson to start learning! Complete the lesson to earn points and gems, and unlock more lessons." className="px-6 mb-6" />
+                    <MascotSpeechBubble text="Pick a lesson to start learning! Complete the lesson to earn points and gems, and unlock more lessons." className="px-4 mb-4" />
                 </div>
 
                 {/* Lessons List - Grouped by Pillar */}

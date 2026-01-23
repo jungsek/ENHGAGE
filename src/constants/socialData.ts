@@ -6,7 +6,7 @@ import { IMAGES } from "@/constants/assets";
 export const MOCK_INSTITUTIONS: InstitutionRanking[] = [
     { rank: 1, name: "National University of Singapore", shortName: "NUS", points: 245890, participants: 3247, trend: "up", trendAmount: 2, logoColor: "#003D7C", logo: IMAGES.schools.nus },
     { rank: 2, name: "Nanyang Technological University", shortName: "NTU", points: 238456, participants: 2891, trend: "down", trendAmount: 1, logoColor: "#C8102E", logo: IMAGES.schools.ntu },
-    { rank: 3, name: "Singapore Polytechnic", shortName: "SP", points: 198234, participants: 2156, trend: "up", trendAmount: 4, logoColor: "#0054A6" }, // No logo yet
+    { rank: 3, name: "Singapore Polytechnic", shortName: "SP", points: 198234, participants: 2156, trend: "up", trendAmount: 4, logoColor: "#0054A6", logo: IMAGES.schools.sp },
     { rank: 4, name: "Ngee Ann Polytechnic", shortName: "NP", points: 187650, participants: 1943, trend: "same", logoColor: "#00897B", logo: IMAGES.schools.np },
     { rank: 5, name: "Republic Polytechnic", shortName: "RP", points: 176234, participants: 1756, trend: "up", trendAmount: 1, logoColor: "#E84E0F", logo: IMAGES.schools.rp },
     { rank: 6, name: "Temasek Polytechnic", shortName: "TP", points: 165890, participants: 1623, trend: "down", trendAmount: 2, logoColor: "#006838", logo: IMAGES.schools.tp },

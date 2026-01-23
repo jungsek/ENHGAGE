@@ -7,6 +7,7 @@ export type OnboardingStep =
     | "buddy"
     | "widget"
     | "notifications"
+    | "health"
     | "referral"
     | "complete"
     | "home";

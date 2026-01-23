@@ -102,6 +102,7 @@ export const SignInScreen = () => {
                     By continuing, you agree to our Terms of Service &
                     Privacy Policy
                 </p>
+                <div className="h-12"></div>
             </div>
         </div>
     );

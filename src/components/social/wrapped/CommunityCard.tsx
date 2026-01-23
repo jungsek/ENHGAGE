@@ -66,7 +66,7 @@ export const CommunityCard = ({ wrapped, mascotImage }: CommunityCardProps) => {
                 >
                     <img
                         src={mascotImage}
-                        className="w-50 h-50 object-contain"
+                        className="w-48 h-48 object-contain"
                         alt="Mascot"
                     />
                 </motion.div>

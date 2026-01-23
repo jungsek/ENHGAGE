@@ -50,12 +50,12 @@ export const InterestsScreen = () => {
                                 onClick={() => toggleInterest(item.id)}
                                 className="flex flex-col items-center justify-center text-center h-32"
                             >
-                                <div 
+                                <div
                                     className="w-10 h-10 mb-2 rounded-lg flex items-center justify-center"
                                     style={{ backgroundColor: `${item.color}20` }}
                                 >
-                                    <img 
-                                        src={getIconSrc(item.icon)} 
+                                    <img
+                                        src={getIconSrc(item.icon)}
                                         alt={item.title}
                                         className="w-6 h-6"
                                         style={{ filter: isSelected ? 'none' : 'grayscale(50%)' }}
@@ -91,6 +91,7 @@ export const InterestsScreen = () => {
                     </button>
                 </div>
             </div>
+            <div className="h-20"></div>
         </div>
     );
 };
