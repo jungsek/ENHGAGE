@@ -82,7 +82,7 @@ const getTodayString = () => {
 
 export const useMapStore = create<MapState>()(
     persist(
-        (set, get) => ({
+        (set) => ({
             // Mode
             mode: 'discovery',
             setMode: (mode) => set({ mode }),
@@ -131,14 +131,17 @@ export const useMapStore = create<MapState>()(
 
             // Bookings
             bookings: [],
-            addBooking: (sessionId) => set((state) => ({
-                bookings: [...state.bookings, {
-                    id: `b${Date.now()}`,
-                    session_id: sessionId,
-                    booked_at: new Date().toISOString(),
-                    status: 'confirmed' as const,
-                }]
-            })),
+            addBooking: (sessionId) => set((state) => {
+                if (state.bookings.some(b => b.session_id === sessionId)) return state;
+                return {
+                    bookings: [...state.bookings, {
+                        id: `b${Date.now()}`,
+                        session_id: sessionId,
+                        booked_at: new Date().toISOString(),
+                        status: 'confirmed' as const,
+                    }]
+                };
+            }),
             cancelBooking: (bookingId) => set((state) => ({
                 bookings: state.bookings.map(b =>
                     b.id === bookingId ? { ...b, status: 'cancelled' as const } : b

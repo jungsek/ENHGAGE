@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { WrappedData } from "@/types";
 import { IMAGES } from "@/constants/assets";
-import { StatCard } from "./StatCard";
+
 
 interface StreakCardProps {
     wrapped: WrappedData;

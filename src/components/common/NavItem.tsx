@@ -1,13 +1,13 @@
-import React from "react";
+
 import { cn } from "@/components/ui/utils";
 
 export const NavItem = ({
     icon: Icon,
-    label,
+
     active,
 }: {
     icon: any;
-    label: string;
+
     active?: boolean;
 }) => (
     <button className="flex flex-col items-center gap-1 p-2 w-full">

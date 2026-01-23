@@ -13,7 +13,7 @@ export const ProgrammeDetailScreen: React.FC = () => {
     const { id } = useParams<{ id: string }>();
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
-    const { addBooking } = useMapStore();
+    const { addBooking, bookings } = useMapStore();
     const { addPoints } = useAppStore();
 
     const sessionId = searchParams.get('session');
@@ -24,6 +24,7 @@ export const ProgrammeDetailScreen: React.FC = () => {
 
     // Get other sessions for this programme
     const otherSessions = SESSIONS.filter(s => s.programme_id === id && s.id !== sessionId).slice(0, 3);
+    const isBooked = bookings.some(b => b.session_id === sessionId && b.status === 'confirmed');
 
     if (!programme || !session || !venue || !pillar) {
         return (
@@ -211,8 +212,10 @@ export const ProgrammeDetailScreen: React.FC = () => {
                     variant="primary"
                     fullWidth
                     onClick={handleBook}
+                    disabled={isBooked}
+                    className={isBooked ? "bg-gray-300 text-gray-500 border-gray-300 cursor-not-allowed" : ""}
                 >
-                    Book Now
+                    {isBooked ? "Booked" : "Book Now"}
                 </Button>
             </div>
         </div>

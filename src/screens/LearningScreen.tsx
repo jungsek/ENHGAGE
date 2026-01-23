@@ -24,7 +24,7 @@ import { PillarCertifiedModal } from "@/components/learning/PillarCertifiedModal
 import { CertificateShareModal } from "@/components/learning/CertificateShareModal";
 import { AppHeader } from "@/components/common/AppHeader";
 import { useAppStore } from "@/store/useAppStore";
-import { useMascot } from "@/hooks/useMascot";
+
 import { MascotSpeechBubble } from "@/components/learning/MascotSpeechBubble";
 
 export const LearningScreen: React.FC = () => {
@@ -46,7 +46,7 @@ export const LearningScreen: React.FC = () => {
 
     const { profile, addPoints } = useAppStore();
     const navigate = useNavigate();
-    const { mascotFull } = useMascot();
+
 
     // Sort pillars based on user preferences (preferred pillars first)
     const sortedPillars = useMemo(() => {
@@ -91,7 +91,7 @@ export const LearningScreen: React.FC = () => {
     const [lessonResult, setLessonResult] = useState<LessonResult | null>(null);
     const [showCompleteScreen, setShowCompleteScreen] = useState(false);
     const [showQuestScreen, setShowQuestScreen] = useState(false);
-    
+
     // Certification modal states
     const [showCertifiedModal, setShowCertifiedModal] = useState(false);
     const [certifiedPillarToShow, setCertifiedPillarToShow] = useState<LessonPillar | null>(null);
@@ -137,7 +137,7 @@ export const LearningScreen: React.FC = () => {
         exitLesson();
         setLessonResult(null);
         setShowQuestScreen(false);
-        
+
         // Check if there's a newly certified pillar to celebrate
         if (newlyCertifiedPillar) {
             setCertifiedPillarToShow(newlyCertifiedPillar);
@@ -282,102 +282,102 @@ export const LearningScreen: React.FC = () => {
                     certifiedAt={getPillarCertificate(sharePillarId)?.certifiedAt}
                 />
             )}
-            
+
             <div className="flex flex-col min-h-screen bg-gray-50 pb-24">
-            {/* Header */}
-            <AppHeader
-                gems={profile.points}
-                streak={profile.streak}
-                onPointsClick={() => navigate("/app/rewards")}
-            />
-            {/* Spacer at top for breathing room */}
-            <div className="h-10" />
-            {/* Content Text with Mascot Speech Bubble */}
-            <div className="">
-                <MascotSpeechBubble text="Pick a lesson to start learning! Complete the lesson to earn points and gems, and unlock more lessons." className="px-6 mb-6" />
-            </div>
+                {/* Header */}
+                <AppHeader
+                    gems={profile.points}
+                    streak={profile.streak}
+                    onPointsClick={() => navigate("/app/rewards")}
+                />
+                {/* Spacer at top for breathing room */}
+                <div className="h-10" />
+                {/* Content Text with Mascot Speech Bubble */}
+                <div className="">
+                    <MascotSpeechBubble text="Pick a lesson to start learning! Complete the lesson to earn points and gems, and unlock more lessons." className="px-6 mb-6" />
+                </div>
 
-            {/* Lessons List - Grouped by Pillar */}
-            <div className="p-6 space-y-6">
-                {groupedLessons.map((group) => {
-                    const isPreferred = profile.interests.includes(group.pillar.id);
-                    const isCertified = isPillarCertified(group.pillar.id);
+                {/* Lessons List - Grouped by Pillar */}
+                <div className="p-6 space-y-6">
+                    {groupedLessons.map((group) => {
+                        const isPreferred = profile.interests.includes(group.pillar.id);
+                        const isCertified = isPillarCertified(group.pillar.id);
 
-                    return (
-                        <div key={group.pillar.id} className="space-y-3">
-                            {/* Pillar Section Header */}
-                            <div className="flex items-center gap-3">
-                                <div
-                                    className="w-1 h-6 rounded-full"
-                                    style={{ backgroundColor: group.pillar.color }}
-                                />
-                                <div className="flex-1">
-                                    <div className="flex items-center gap-2 flex-wrap">
-                                        <h2
-                                            className="text-sm font-bold tracking-wide"
-                                            style={{ color: group.pillar.color }}
-                                        >
-                                            {group.pillar.title.toUpperCase()}
-                                        </h2>
-                                        {isPreferred && (
-                                            <span
-                                                className="text-[10px] font-bold px-2 py-0.5 rounded-full"
-                                                style={{
-                                                    backgroundColor: `${group.pillar.color}20`,
-                                                    color: group.pillar.color
-                                                }}
+                        return (
+                            <div key={group.pillar.id} className="space-y-3">
+                                {/* Pillar Section Header */}
+                                <div className="flex items-center gap-3">
+                                    <div
+                                        className="w-1 h-6 rounded-full"
+                                        style={{ backgroundColor: group.pillar.color }}
+                                    />
+                                    <div className="flex-1">
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                            <h2
+                                                className="text-sm font-bold tracking-wide"
+                                                style={{ color: group.pillar.color }}
                                             >
-                                                YOUR PICK
-                                            </span>
-                                        )}
-                                        {isCertified && (
-                                            <button
-                                                onClick={() => handleCertifiedBadgeClick(group.pillar.id)}
-                                                className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFC800] text-white hover:bg-[#FFD633] transition-colors"
-                                            >
-                                                <Award size={10} />
-                                                CERTIFIED
-                                            </button>
-                                        )}
+                                                {group.pillar.title.toUpperCase()}
+                                            </h2>
+                                            {isPreferred && (
+                                                <span
+                                                    className="text-[10px] font-bold px-2 py-0.5 rounded-full"
+                                                    style={{
+                                                        backgroundColor: `${group.pillar.color}20`,
+                                                        color: group.pillar.color
+                                                    }}
+                                                >
+                                                    YOUR PICK
+                                                </span>
+                                            )}
+                                            {isCertified && (
+                                                <button
+                                                    onClick={() => handleCertifiedBadgeClick(group.pillar.id)}
+                                                    className="flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#FFC800] text-white hover:bg-[#FFD633] transition-colors"
+                                                >
+                                                    <Award size={10} />
+                                                    CERTIFIED
+                                                </button>
+                                            )}
+                                        </div>
+                                        <p className="text-xs text-gray-400 mt-0.5">
+                                            {group.lessons.length} {group.lessons.length === 1 ? 'lesson' : 'lessons'}
+                                        </p>
                                     </div>
-                                    <p className="text-xs text-gray-400 mt-0.5">
-                                        {group.lessons.length} {group.lessons.length === 1 ? 'lesson' : 'lessons'}
-                                    </p>
+                                </div>
+
+                                {/* Lessons in this pillar */}
+                                <div className="space-y-3">
+                                    {group.lessons.map((lesson, index) => {
+                                        // Check if locked: locked if logic:
+                                        // 1. Not the first lesson in the pillar
+                                        // 2. Previous lesson is NOT completed
+                                        let isLocked = false;
+                                        if (index > 0) {
+                                            const prevLesson = group.lessons[index - 1];
+                                            const isPrevCompleted = completedLessons.includes(prevLesson.id);
+                                            if (!isPrevCompleted) {
+                                                isLocked = true;
+                                            }
+                                        }
+
+                                        return (
+                                            <LessonTile
+                                                key={lesson.id}
+                                                lesson={lesson}
+                                                isLocked={isLocked}
+                                                onStart={handleStartLesson}
+                                            />
+                                        );
+                                    })}
                                 </div>
                             </div>
-
-                            {/* Lessons in this pillar */}
-                            <div className="space-y-3">
-                                {group.lessons.map((lesson, index) => {
-                                    // Check if locked: locked if logic:
-                                    // 1. Not the first lesson in the pillar
-                                    // 2. Previous lesson is NOT completed
-                                    let isLocked = false;
-                                    if (index > 0) {
-                                        const prevLesson = group.lessons[index - 1];
-                                        const isPrevCompleted = completedLessons.includes(prevLesson.id);
-                                        if (!isPrevCompleted) {
-                                            isLocked = true;
-                                        }
-                                    }
-
-                                    return (
-                                        <LessonTile
-                                            key={lesson.id}
-                                            lesson={lesson}
-                                            isLocked={isLocked}
-                                            onStart={handleStartLesson}
-                                        />
-                                    );
-                                })}
-                            </div>
-                        </div>
-                    );
-                })}
-                {/* Spacer to prevent content being cut off by bottom navbar */}
-                <div className="h-24" />
+                        );
+                    })}
+                    {/* Spacer to prevent content being cut off by bottom navbar */}
+                    <div className="h-24" />
+                </div>
             </div>
-        </div>
         </>
     );
 };

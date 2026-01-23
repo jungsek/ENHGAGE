@@ -15,7 +15,7 @@ export const MapScreen: React.FC = () => {
     const [showActivitySummary, setShowActivitySummary] = useState(false);
 
     // Live location tracking
-    const { coordinates, isLoading, permission, error, requestPosition } = useGeolocation();
+    const { coordinates, requestPosition } = useGeolocation();
 
     // Update store whenever live coordinates change
     useEffect(() => {
@@ -46,13 +46,6 @@ export const MapScreen: React.FC = () => {
             >
                 <Crosshair size={20} className="text-gray-600" />
             </button>
-
-            {/* Geolocation Error Feedback */}
-            {(error || permission === 'denied') && (
-                <div className="absolute top-4 left-4 right-16 z-20 bg-red-100 border border-red-400 text-red-700 px-4 py-2 rounded shadow-md text-sm">
-                    {error || 'Location permission denied'}
-                </div>
-            )}
 
             {/* Discovery Mode UI */}
             {mode === 'discovery' && (

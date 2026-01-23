@@ -1,4 +1,4 @@
-import React from "react";
+
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { IMAGES } from "@/constants/assets";

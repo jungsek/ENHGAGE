@@ -57,12 +57,11 @@ export const buildLinkedInCertificationUrl = (
  * Opens the share dialog with pre-filled certificate URL
  */
 export const buildLinkedInShareUrl = (
-    pillarId: LessonPillar,
-    customText?: string
+    pillarId: LessonPillar
 ): string => {
     const baseUrl = 'https://www.linkedin.com/sharing/share-offsite/';
     const certificateUrl = getCertificateUrl(pillarId);
-    
+
     const params = new URLSearchParams({
         url: certificateUrl,
     });

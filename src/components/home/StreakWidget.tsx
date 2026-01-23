@@ -1,4 +1,4 @@
-import React from "react";
+
 // Flame icon from assets
 import { motion } from "motion/react";
 import { cn } from "@/components/ui/utils";
@@ -8,10 +8,10 @@ import { IMAGES } from "@/constants/assets";
 interface StreakWidgetProps {
     history: boolean[]; // Array of last 7 days
     streakCurrent: number;
-    streakStatus: "cold" | "warm" | "hot";
+
 }
 
-export const StreakWidget = ({ history, streakCurrent, streakStatus }: StreakWidgetProps) => {
+export const StreakWidget = ({ history, streakCurrent }: StreakWidgetProps) => {
     // Generate day labels for current week (Monday to Sunday)
     const today = new Date();
     today.setHours(0, 0, 0, 0);

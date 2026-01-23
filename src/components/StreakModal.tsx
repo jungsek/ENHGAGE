@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { X, Check } from 'lucide-react';
 import { cn } from '@/components/ui/utils';
 import { IMAGES } from '@/constants/assets';

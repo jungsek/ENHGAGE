@@ -1,6 +1,6 @@
-import React from 'react';
+
 import { createPortal } from 'react-dom';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion } from 'motion/react';
 import { Link2, MoreHorizontal } from 'lucide-react';
 import { WrappedData } from "@/types";
 import shareSummaryImage from "@/assets/backgrounds/share-summary.png";

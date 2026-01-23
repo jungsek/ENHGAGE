@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "motion/react";
 import { User, Activity, Heart, Flame } from "lucide-react";
 import { Button } from "@/components/common/Button";

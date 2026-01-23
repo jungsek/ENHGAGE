@@ -1,4 +1,5 @@
 import React from 'react';
+import { Check } from 'lucide-react';
 import { Programme, Venue, Pillar, Session } from '@/constants/programmeData';
 import { useMapStore } from '@/store/useMapStore';
 
@@ -29,8 +30,9 @@ export const ProgrammeCard: React.FC<ProgrammeCardProps> = ({
     session,
     onClick,
 }) => {
-    const { userLocation } = useMapStore();
+    const { userLocation, bookings } = useMapStore();
     const distance = calculateDistance(userLocation[0], userLocation[1], venue.lat, venue.lng);
+    const isBooked = bookings.some(b => b.session_id === session.id && b.status === 'confirmed');
 
     return (
         <div
@@ -67,6 +69,11 @@ export const ProgrammeCard: React.FC<ProgrammeCardProps> = ({
                 </p>
 
                 <div className="flex items-center gap-2 mt-2">
+                    {isBooked && (
+                        <span className="text-[10px] font-bold text-white px-2 py-0.5 rounded-full bg-green-500 flex items-center gap-1">
+                            <Check size={10} strokeWidth={3} /> Booked
+                        </span>
+                    )}
                     <span className="text-[10px] font-bold text-white px-2 py-0.5 rounded-full" style={{ backgroundColor: pillar.color }}>
                         +{programme.points_earned} pts
                     </span>

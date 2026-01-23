@@ -130,7 +130,7 @@ export const HomeScreen = () => {
                 <StreakWidget
                     history={profile.streak.history}
                     streakCurrent={profile.streak.current}
-                    streakStatus={profile.streak.status}
+
                 />
 
                 {/* Today's Progress Section */}

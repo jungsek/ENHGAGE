@@ -5,14 +5,14 @@ import { IMAGES } from "@/constants/assets";
 import { Button } from "@/components/common/Button";
 import { motion, AnimatePresence } from "motion/react";
 import { Clock } from "lucide-react";
-import { useMascot } from "@/hooks/useMascot";
+
 import { REWARDS, Reward } from "@/constants/rewardsData";
 import { MascotSpeechBubble } from "@/components/learning/MascotSpeechBubble";
 
 export const RewardsScreen: React.FC = () => {
     const { profile, addPoints } = useAppStore();
-    const { mascotFull } = useMascot();
-    const [activeTab, setActiveTab] = useState<"rewards" | "history">("rewards");
+
+    const [activeTab] = useState<"rewards" | "history">("rewards");
     const [selectedCategory, setSelectedCategory] = useState<"all" | "voucher" | "activity" | "digital" | "experience">("all");
     const [showRedemptionSuccess, setShowRedemptionSuccess] = useState<Reward | null>(null);
 

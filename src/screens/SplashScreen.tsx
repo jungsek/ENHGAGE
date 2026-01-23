@@ -1,4 +1,4 @@
-import React from "react";
+
 import { motion } from "motion/react";
 import { EnhgageLogo } from "@/components/common/EnhgageLogo";
 

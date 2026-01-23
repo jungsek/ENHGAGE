@@ -1,4 +1,4 @@
-import React from "react";
+
 import { ChevronLeft, Bell, Check } from "lucide-react";
 import { Button } from "@/components/common/Button";
 import { ProgressBar } from "@/components/common/ProgressBar";
