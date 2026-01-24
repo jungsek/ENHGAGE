@@ -134,7 +134,7 @@ export const QuestItem = ({ quest, isCompleted, onClick, profile }: QuestItemPro
                             </div>
                         )}
                     </div>
-                    <span className="text-xs font-bold" style={{ color: quest.colorTheme.text }}> // Use a darker shade or the text color
+                    <span className="text-xs font-bold" style={{ color: quest.colorTheme.text }}>
                         {quest.progress.current.toLocaleString()} / {quest.progress.total.toLocaleString()}
                     </span>
                 </div>
