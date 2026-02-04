@@ -10,7 +10,7 @@ import {
     shareToLinkedInCertification,
     shareToLinkedInPost,
 } from '@/utils/linkedinShare';
-import linkedinIcon from '@/assets/social_media_icons/linkedin.png';
+import linkedinIcon from '@/assets/social_media_icons/linkedin.webp';
 
 interface CertificateShareModalProps {
     isOpen: boolean;

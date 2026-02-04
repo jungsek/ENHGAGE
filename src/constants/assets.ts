@@ -1,46 +1,46 @@
-import olahHead from "@/assets/mascots/olah/head.png";
-import olahFull from "@/assets/mascots/olah/full.png";
-import olahHappy from "@/assets/mascots/olah/happy.png";
-import lylahHead from "@/assets/mascots/lylah/head.png";
-import lylahFull from "@/assets/mascots/lylah/full.png";
-import lylahHappy from "@/assets/mascots/lylah/happy.png";
-import ellahHead from "@/assets/mascots/ellah/head.png";
-import ellahFull from "@/assets/mascots/ellah/full.png";
-import ellahHappy from "@/assets/mascots/ellah/happy.png";
-import singpassLogo from "@/assets/brand/singpass_logo.png";
-import enhgageIcon from "@/assets/brand/enhgage_icon.png";
-import nhgLogo from "@/assets/brand/nhg_logo.png";
-import taglineImg from "@/assets/brand/tagline.png";
-import enhgageFullLogo from "@/assets/logo.png";
-import appleHealthImg from "@/assets/apple_health.png";
+import olahHead from "@/assets/mascots/olah/head.webp";
+import olahFull from "@/assets/mascots/olah/full.webp";
+import olahHappy from "@/assets/mascots/olah/happy.webp";
+import lylahHead from "@/assets/mascots/lylah/head.webp";
+import lylahFull from "@/assets/mascots/lylah/full.webp";
+import lylahHappy from "@/assets/mascots/lylah/happy.webp";
+import ellahHead from "@/assets/mascots/ellah/head.webp";
+import ellahFull from "@/assets/mascots/ellah/full.webp";
+import ellahHappy from "@/assets/mascots/ellah/happy.webp";
+import singpassLogo from "@/assets/brand/singpass_logo.webp";
+import enhgageIcon from "@/assets/brand/enhgage_icon.webp";
+import nhgLogo from "@/assets/brand/nhg_logo.webp";
+import taglineImg from "@/assets/brand/tagline.webp";
+import enhgageFullLogo from "@/assets/logo.webp";
+import appleHealthImg from "@/assets/apple_health.webp";
 
 // Stat Badge Images
-import statXpBadge from "@/assets/stats/stat-xp.png";
-import statGoodBadge from "@/assets/stats/stat-good.png";
-import statSpeedyBadge from "@/assets/stats/stat-speedy.png";
+import statXpBadge from "@/assets/stats/stat-xp.webp";
+import statGoodBadge from "@/assets/stats/stat-good.webp";
+import statSpeedyBadge from "@/assets/stats/stat-speedy.webp";
 
 // Reward Images
-import activeSgImg from "@/assets/rewards/activesg.png";
-import climbingCentralImg from "@/assets/rewards/climbcentral.png";
-import decathlonImg from "@/assets/rewards/decathlon.png";
-import fairPriceImg from "@/assets/rewards/fairprice.png";
-import grabImg from "@/assets/rewards/grab.png";
-import guardianImg from "@/assets/rewards/guardian.png";
-import starbucksImg from "@/assets/rewards/starbucks.png";
-import watsonsImg from "@/assets/rewards/watsons.png";
-import anytimeFitnessImg from "@/assets/rewards/anytimefitness.png";
-import boostImg from "@/assets/rewards/boost.png";
-import euYanSangImg from "@/assets/rewards/euyansang.png";
-import mrBeanImg from "@/assets/rewards/mrbean.png";
-import saladStopImg from "@/assets/rewards/saladstop.png";
-import sgPilatesImg from "@/assets/rewards/sgpilates.png";
-import trueFitnessImg from "@/assets/rewards/truefitness.png";
+import activeSgImg from "@/assets/rewards/activesg.webp";
+import climbingCentralImg from "@/assets/rewards/climbcentral.webp";
+import decathlonImg from "@/assets/rewards/decathlon.webp";
+import fairPriceImg from "@/assets/rewards/fairprice.webp";
+import grabImg from "@/assets/rewards/grab.webp";
+import guardianImg from "@/assets/rewards/guardian.webp";
+import starbucksImg from "@/assets/rewards/starbucks.webp";
+import watsonsImg from "@/assets/rewards/watsons.webp";
+import anytimeFitnessImg from "@/assets/rewards/anytimefitness.webp";
+import boostImg from "@/assets/rewards/boost.webp";
+import euYanSangImg from "@/assets/rewards/euyansang.webp";
+import mrBeanImg from "@/assets/rewards/mrbean.webp";
+import saladStopImg from "@/assets/rewards/saladstop.webp";
+import sgPilatesImg from "@/assets/rewards/sgpilates.webp";
+import trueFitnessImg from "@/assets/rewards/truefitness.webp";
 
 // Quest Images
-import questTasksIcon from "@/assets/quests/task1.png";
-import questTask2Icon from "@/assets/quests/task2.png";
-import questTask3Icon from "@/assets/quests/task3.png";
-import questSpecialTaskIcon from "@/assets/quests/Special Task.png";
+import questTasksIcon from "@/assets/quests/task1.webp";
+import questTask2Icon from "@/assets/quests/task2.webp";
+import questTask3Icon from "@/assets/quests/task3.webp";
+import questSpecialTaskIcon from "@/assets/quests/Special Task.webp";
 
 // Import Icons
 import trophyIcon from "@/assets/icons/diamond.svg"; // Placeholder
@@ -65,7 +65,7 @@ import lightningIcon from "@/assets/icons/lightning.svg";
 import timerIcon from "@/assets/icons/timer.svg";
 import flagIcon from "@/assets/icons/map.svg"; // Placeholder
 import blueDotIcon from "@/assets/icons/blue-dot.svg";
-import runIcon from "@/assets/run.png";
+import runIcon from "@/assets/run.webp";
 
 // Navigation Icons
 import homeIcon from "@/assets/icons/home.svg";
@@ -95,24 +95,24 @@ import medalTenthIcon from "@/assets/icons/medal-tenth.svg";
 import medalEleventhIcon from "@/assets/icons/medal-eleventh.svg";
 
 // Background Images
-import streaksBackground from "@/assets/backgrounds/streaks.png";
-import activityBackground from "@/assets/backgrounds/activity.png";
-import communityBackground from "@/assets/backgrounds/community_bg.png";
-import summaryBackground from "@/assets/backgrounds/summary.png";
+import streaksBackground from "@/assets/backgrounds/streaks.webp";
+import activityBackground from "@/assets/backgrounds/activity.webp";
+import communityBackground from "@/assets/backgrounds/community_bg.webp";
+import summaryBackground from "@/assets/backgrounds/summary.webp";
 
 // School Icons
-import iteLogo from "@/assets/schools/ite.png";
-import nypLogo from "@/assets/schools/nanyang-poly.png";
-import npLogo from "@/assets/schools/ngee-ann-poly.png";
-import ntuLogo from "@/assets/schools/ntu.png";
-import nusLogo from "@/assets/schools/nus.png";
-import rpLogo from "@/assets/schools/republic-poly.png";
-import sitLogo from "@/assets/schools/sit.png";
-import smuLogo from "@/assets/schools/smu.png";
-import sussLogo from "@/assets/schools/suss.png";
-import sutdLogo from "@/assets/schools/sutd.png";
-import tpLogo from "@/assets/schools/temasek-poly.png";
-import spLogo from "@/assets/schools/singapore-poly.png";
+import iteLogo from "@/assets/schools/ite.webp";
+import nypLogo from "@/assets/schools/nanyang-poly.webp";
+import npLogo from "@/assets/schools/ngee-ann-poly.webp";
+import ntuLogo from "@/assets/schools/ntu.webp";
+import nusLogo from "@/assets/schools/nus.webp";
+import rpLogo from "@/assets/schools/republic-poly.webp";
+import sitLogo from "@/assets/schools/sit.webp";
+import smuLogo from "@/assets/schools/smu.webp";
+import sussLogo from "@/assets/schools/suss.webp";
+import sutdLogo from "@/assets/schools/sutd.webp";
+import tpLogo from "@/assets/schools/temasek-poly.webp";
+import spLogo from "@/assets/schools/singapore-poly.webp";
 
 export const IMAGES = {
     enhgageIcon,

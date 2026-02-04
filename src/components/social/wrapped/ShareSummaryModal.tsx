@@ -3,11 +3,11 @@ import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 import { Link2, MoreHorizontal } from 'lucide-react';
 import { WrappedData } from "@/types";
-import shareSummaryImage from "@/assets/backgrounds/share-summary.png";
-import instagramIcon from "@/assets/social_media_icons/instagram.png";
-import linkedinIcon from "@/assets/social_media_icons/linkedin.png";
-import whatsappIcon from "@/assets/social_media_icons/whatsapp.png";
-import tiktokIcon from "@/assets/social_media_icons/tiktok.png";
+import shareSummaryImage from "@/assets/backgrounds/share-summary.webp";
+import instagramIcon from "@/assets/social_media_icons/instagram.webp";
+import linkedinIcon from "@/assets/social_media_icons/linkedin.webp";
+import whatsappIcon from "@/assets/social_media_icons/whatsapp.webp";
+import tiktokIcon from "@/assets/social_media_icons/tiktok.webp";
 
 // Reuse FontStyles if needed, but since it's imported in App, we might not need it here if this was a separate file. 
 // However, since we are adding this to App.tsx via edit/write, I'll just create the component code block to be inserted.

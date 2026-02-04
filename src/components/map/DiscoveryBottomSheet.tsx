@@ -6,7 +6,7 @@ import { getSessionsWithDetails } from '@/constants/programmeData';
 import { useMapStore } from '@/store/useMapStore';
 import { useNavigate } from 'react-router-dom';
 import { SlidersHorizontal, ChevronDown } from 'lucide-react';
-import handlebarImage from '@/assets/handlebar.png';
+import handlebarImage from '@/assets/handlebar.webp';
 
 type SheetState = 'collapsed' | 'half' | 'expanded';
 
