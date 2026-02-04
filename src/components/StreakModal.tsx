@@ -19,7 +19,8 @@ export const StreakModal = ({
 }) => {
     if (!isOpen) return null;
 
-    const days = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
+    // Monday-based week to match history array: history[0] = Monday, history[6] = Sunday
+    const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
 
     return createPortal(
         <div className="fixed inset-0 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm" style={{ zIndex: 9999 }} onClick={onClose}>

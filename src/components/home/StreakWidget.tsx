@@ -16,11 +16,13 @@ export const StreakWidget = ({ history, streakCurrent }: StreakWidgetProps) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
-    // Calculate Monday of the current week
-    // Day 0 is Sunday, 1 is Monday. We want 1 (Mon) to be start.
-    const currentDay = today.getDay(); // 0-6
-    const daysToSubtract = currentDay === 0 ? 6 : currentDay - 1;
+    // Get current day of week (0 = Sunday, 1 = Monday, etc.)
+    const currentDayOfWeek = today.getDay();
+    // Convert to Monday-based index (0 = Monday, 6 = Sunday)
+    const todayIndex = currentDayOfWeek === 0 ? 6 : currentDayOfWeek - 1;
 
+    // Calculate Monday of the current week
+    const daysToSubtract = todayIndex;
     const monday = new Date(today);
     monday.setDate(today.getDate() - daysToSubtract);
 
@@ -28,19 +30,18 @@ export const StreakWidget = ({ history, streakCurrent }: StreakWidgetProps) => {
         const d = new Date(monday);
         d.setDate(monday.getDate() + i);
 
-        // Calculate offset from today to map to history array
-        // history is [Today-6, ..., Today] (length 7)
-        const diffTime = d.getTime() - today.getTime();
-        const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
-        const historyIndex = 6 + diffDays;
+        // i is now the direct index: 0 = Monday, 1 = Tuesday, etc.
+        const isToday = i === todayIndex;
+        const isPast = i < todayIndex;
+        const isFuture = i > todayIndex;
 
         return {
             label: d.toLocaleDateString('en-US', { weekday: 'short' }).slice(0, 2).toUpperCase(),
             date: d.getDate().toString(),
-            isToday: diffDays === 0,
-            isPreviousDay: diffDays < 0,
-            isFuture: diffDays > 0,
-            historyIndex
+            isToday,
+            isPreviousDay: isPast,
+            isFuture,
+            historyIndex: i  // Direct mapping: history[0] = Monday, history[6] = Sunday
         };
     });
 
@@ -71,7 +72,7 @@ export const StreakWidget = ({ history, streakCurrent }: StreakWidgetProps) => {
                     return (
                         <div key={idx} className={cn(
                             "flex flex-col items-center gap-1",
-                            day.isPreviousDay && "opacity-40 grayscale"
+                            day.isFuture && "opacity-40"
                         )}>
                             {/* Date Number */}
                             <span className={cn(

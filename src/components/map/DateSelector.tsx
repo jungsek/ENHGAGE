@@ -4,8 +4,14 @@ import { useMapStore } from '@/store/useMapStore';
 const DATES = Array.from({ length: 7 }, (_, i) => {
     const date = new Date();
     date.setDate(date.getDate() + i);
+
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const dateString = `${year}-${month}-${day}`;
+
     return {
-        dateString: date.toISOString().split('T')[0],
+        dateString,
         dayName: i === 0 ? 'Today' : date.toLocaleDateString('en-US', { weekday: 'short' }),
         dayNum: date.getDate(),
         month: date.toLocaleDateString('en-US', { month: 'short' }),
@@ -24,8 +30,8 @@ export const DateSelector: React.FC = () => {
                         key={d.dateString}
                         onClick={() => setSelectedDate(d.dateString)}
                         className={`flex flex-col items-center min-w-[60px] px-3 py-2 rounded-xl border-2 border-b-4 active:border-b-2 active:translate-y-[2px] transition-all ${isSelected
-                                ? 'bg-[#E0F2F1] text-[#008080] border-[#008080]'
-                                : 'bg-gray-100 text-gray-600 border-gray-200 border-b-gray-300 hover:bg-gray-200'
+                            ? 'bg-[#E0F2F1] text-[#008080] border-[#008080]'
+                            : 'bg-gray-100 text-gray-600 border-gray-200 border-b-gray-300 hover:bg-gray-200'
                             }`}
                     >
                         <span className="text-xs font-bold uppercase">{d.dayName}</span>

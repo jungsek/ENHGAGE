@@ -72,12 +72,15 @@ const DEFAULT_ACTIVITY: ActivityState = {
     route: [],
 };
 
-// Default location: Serangoon area
-const DEFAULT_LOCATION: [number, number] = [1.352, 103.8714];
+// Default location: Bishan (Central)
+const DEFAULT_LOCATION: [number, number] = [1.3526, 103.8352];
 
 const getTodayString = () => {
     const today = new Date();
-    return today.toISOString().split('T')[0];
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
 };
 
 export const useMapStore = create<MapState>()(
@@ -156,7 +159,6 @@ export const useMapStore = create<MapState>()(
             name: 'enhgage-map-store',
             partialize: (state) => ({
                 bookings: state.bookings,
-                selectedDate: state.selectedDate,
             }),
         }
     )

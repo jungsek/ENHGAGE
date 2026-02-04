@@ -141,7 +141,7 @@ export const HomeScreen = () => {
                             Today's Progress
                         </h2>
                         <span className="text-[#00897B] font-extrabold font-din">
-                            2/4
+                            {profile.completedQuests?.length || 0}/4
                         </span>
                     </div>
                     <div className="bg-white border-2 border-gray-200 rounded-2xl p-4 pb-6 shadow-[0_4px_0_#e5e7eb] relative overflow-hidden">

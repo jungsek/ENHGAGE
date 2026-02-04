@@ -2,6 +2,40 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { OnboardingStep, UserProfile, LeaderboardCategory, TimeFilter } from "@/types";
 
+// Helper function to generate streak history based on current day of week
+// Returns array of 7 booleans - true for each day up to today
+// Helper to get the "business date" (starts at 6 AM)
+// If it's before 6 AM, it counts as the previous day
+const getBusinessDate = (): Date => {
+    const now = new Date();
+    // Subtract 6 hours to shift the day boundary
+    return new Date(now.getTime() - 6 * 60 * 60 * 1000);
+};
+
+// Helper to get YYYY-MM-DD string based on business date
+const getBusinessDateString = (): string => {
+    return getBusinessDate().toISOString().split('T')[0];
+};
+
+// Helper function to generate streak history based on current day of week
+// Returns array of 7 booleans - true for each day up to today
+const getStreakHistoryForToday = (): boolean[] => {
+    const today = getBusinessDate();
+    const dayOfWeek = today.getDay(); // 0 = Sunday, 1 = Monday, ..., 6 = Saturday
+    // Map to Monday-based week (0 = Monday, 6 = Sunday)
+    const mondayBasedDay = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    // Create array where all days up to and including today are true
+    return Array.from({ length: 7 }, (_, idx) => idx <= mondayBasedDay);
+};
+
+// Get the current streak count (number of days completed this week)
+const getCurrentStreakCount = (): number => {
+    const today = getBusinessDate();
+    const dayOfWeek = today.getDay();
+    const mondayBasedDay = dayOfWeek === 0 ? 6 : dayOfWeek - 1;
+    return mondayBasedDay + 1; // +1 because 0-indexed
+};
+
 interface AppState {
     step: OnboardingStep;
     profile: UserProfile;
@@ -45,14 +79,14 @@ export const useAppStore = create<AppState>()(
                 maxXP: 500,
                 points: 2000,
                 streak: {
-                    current: 7,
+                    current: getCurrentStreakCount(),
                     status: "warm",
                     freezes: 1,
-                    history: [true, true, true, true, true, true, false],
+                    history: getStreakHistoryForToday(),
                 },
                 completedQuests: [], // Initialize completedQuests
                 dailyRewardClaimed: false,
-                lastActiveDate: new Date().toISOString().split('T')[0],
+                lastActiveDate: getBusinessDateString(),
             },
             // Leaderboard State
             activeLeaderboardCategory: "overall",
@@ -86,8 +120,8 @@ export const useAppStore = create<AppState>()(
             // Add points to user profile and handle leveling
             addPoints: (amount) =>
                 set((state) => {
-                    const newTotalPoints = state.profile.points + amount;
-                    let newCurrentXP = (state.profile.currentXP || 0) + amount;
+                    const newTotalPoints = Math.max(0, state.profile.points + amount);
+                    let newCurrentXP = Math.max(0, (state.profile.currentXP || 0) + amount);
                     let newLevel = state.profile.level || 1;
                     const maxXP = state.profile.maxXP || 500;
 
@@ -97,6 +131,9 @@ export const useAppStore = create<AppState>()(
                         newCurrentXP = newCurrentXP - maxXP;
                         // For now we keep maxXP constant at 500 as per request
                     }
+
+                    // Ensure XP never goes negative
+                    newCurrentXP = Math.max(0, newCurrentXP);
 
                     return {
                         profile: {
@@ -125,17 +162,24 @@ export const useAppStore = create<AppState>()(
                         maxXP: 500,
                         points: 2000,
                         streak: {
-                            current: 7,
+                            current: getCurrentStreakCount(),
                             status: "warm",
                             freezes: 1,
-                            history: [true, true, true, true, true, true, false],
+                            history: getStreakHistoryForToday(),
                         },
                         completedQuests: [],
                     },
                 }),
             checkDailyReset: () =>
                 set((state) => {
-                    const today = new Date().toISOString().split('T')[0];
+                    const today = getBusinessDateString();
+                    // Always update streak to current day values
+                    const updatedStreak = {
+                        ...state.profile.streak,
+                        current: getCurrentStreakCount(),
+                        history: getStreakHistoryForToday(),
+                    };
+
                     if (state.profile.lastActiveDate !== today) {
                         return {
                             profile: {
@@ -143,10 +187,17 @@ export const useAppStore = create<AppState>()(
                                 lastActiveDate: today,
                                 completedQuests: [],
                                 dailyRewardClaimed: false,
+                                streak: updatedStreak,
                             }
                         };
                     }
-                    return state;
+                    // Even if same day, update streak values
+                    return {
+                        profile: {
+                            ...state.profile,
+                            streak: updatedStreak,
+                        }
+                    };
                 }),
             claimDailyReward: () =>
                 set((state) => {
