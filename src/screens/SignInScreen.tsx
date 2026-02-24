@@ -35,7 +35,8 @@ export const SignInScreen = () => {
                             <img
                                 src={IMAGES.singpassLogo}
                                 alt="Singpass"
-                                className="h-[18px] object-contain translate-y-[1px]"
+                                style={{ height: '22px' }}
+                                className="w-auto object-contain translate-y-[1.5px]"
                             />
                         </div>
                     </Button>

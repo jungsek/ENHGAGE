@@ -143,6 +143,6 @@ export const OTHER_INSTITUTION_OPTIONS = [
 export const DEMO_STREAK_CONFIG = {
     // 0-6 index for Mon-Sun (or whatever the history array represents, usually ending Today)
     // If today is index 6, then index 3 would be 3 days ago.
-    frozenIndices: [3] as number[],
+    frozenIndices: [0] as number[],
     forceFrozenState: true // toggle to easily enable/disable for demo
 };

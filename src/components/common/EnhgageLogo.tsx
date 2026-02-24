@@ -22,7 +22,7 @@ export const EnhgageLogo = ({
                 alt="Enhgage Icon"
                 className={cn(
                     "object-contain",
-                    size === "large" ? "w-32 h-32" : "w-10 h-10",
+                    size === "large" ? "w-24 h-24" : "w-10 h-10",
                 )}
             />
         )}
@@ -31,7 +31,7 @@ export const EnhgageLogo = ({
             alt="ENHGAGE Logo"
             className={cn(
                 "object-contain",
-                size === "large" ? "h-16 -mt-6" : "h-6 -mt-1",
+                size === "large" ? "h-12 -mt-4" : "h-6 -mt-1",
             )}
         />
     </div>

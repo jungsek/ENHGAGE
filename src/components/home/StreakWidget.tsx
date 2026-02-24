@@ -13,7 +13,9 @@ interface StreakWidgetProps {
 
 export const StreakWidget = ({ history, streakCurrent }: StreakWidgetProps) => {
     // Generate day labels for current week (Monday to Sunday)
-    const today = new Date();
+    // Use business date (6 AM boundary) to match store logic in useAppStore
+    const now = new Date();
+    const today = new Date(now.getTime() - 6 * 60 * 60 * 1000);
     today.setHours(0, 0, 0, 0);
 
     // Get current day of week (0 = Sunday, 1 = Monday, etc.)
@@ -65,8 +67,10 @@ export const StreakWidget = ({ history, streakCurrent }: StreakWidgetProps) => {
                     // Check if we have history for this day
                     const hasHistory = day.historyIndex >= 0 && day.historyIndex < history.length;
                     const isCompleted = hasHistory ? history[day.historyIndex] : false;
+                    // Only show freeze on past days where the streak would have been broken
                     const isFrozen = DEMO_STREAK_CONFIG.forceFrozenState &&
                         hasHistory &&
+                        day.isPreviousDay &&
                         DEMO_STREAK_CONFIG.frozenIndices.includes(day.historyIndex);
 
                     return (
